@@ -1,0 +1,835 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0041)http://jasss.soc.surrey.ac.uk/17/1/5.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+
+<meta name="DC.Title" content="From Schelling to Schools: A Comparison of a Model of Residential Segregation with a Model of School Segregation"> 
+<meta name="DC.Creator" content="Victor Ionut Stoica and Andreas Flache"> 
+<meta name="DC.Creator.Address" content="v.i.stoica@rug.nl"> 
+<meta name="DC.Subject" content="Schelling Model, Ethnic Segregation, School Segregation, Model Alignment"> 
+<meta name="DC.Description" content="We address theoretically whether and under what conditions Schelling&#39;s celebrated result of &#39;self-organized&#39; unintended residential segregation may also apply to school segregation. We propose here a computational model of school segregation that is aligned with a corresponding Schelling-type model of residential segregation. To adapt the model for application to school segregation, we move beyond previous work by combining two preference arguments in modeling parents&#39; school choice, preferences for the ethnic composition of a school and preferences for minimizing the travelling distance to the school. In a set of computational experiments we assessed the effects of population composition and distance preferences in the school model. We found that a preference for nearby schools can suppress the trend towards self-organized segregation obtained in a baseline condition where parents were indifferent towards distance. We then investigated the joint effects of the variation of agents&#39; &#39;tolerance&#39; for out-group members and distance preference. We found that integrated distributions were preserved under a much broader range of conditions than in the absence of a preference for nearby schools. We conclude that parents&#39; preferences for nearby schools may be an important factor in tempering for school choice the segregation dynamics known from models of residential segregation."> 
+<meta name="DC.Publisher" content="JASSS"> 
+<meta name="DC.Date" content="2014-01-31"> 
+<meta name="DC.Type" content="Text.Article"> 
+<meta name="DC.Format" content="text/html"> 
+<meta name="DC.Identifier" content="http://jasss.soc.surrey.ac.uk/17/1/5.html"> 
+<meta name="DC.Source" content="2012:82:3"> 
+<meta name="DC.Language" content="en"> 
+<meta name="DC.Rights" content="JASSS@soc.surrey.ac.uk">
+<title>From Schelling to Schools</title>
+<link rel="stylesheet" href="./139_files/jasssarticle.css" type="text/css">
+<link rel="stylesheet" href="./139_files/SpryCollapsiblePanel.css" type="text/css">
+<script type="text/javascript" async="" src="./139_files/ga.js"></script><script src="./139_files/SpryCollapsiblePanel.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="./139_files/widget007.old.css" media="all"><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head> 
+<body>
+<div id="header">
+	<span class="copyright">©<a href="http://jasss.soc.surrey.ac.uk/admin/copyright.html">Copyright JASSS</a></span><p>
+	<a href="http://jasss.soc.surrey.ac.uk/JASSS.html"><img src="./139_files/JASSSMed.GIF" width="189" height="76" border="0" alt="JASSS logo"></a>
+	</p><p><img src="./139_files/bar.gif" width="100%" height="3" alt="----"> 
+        <span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rfr_id=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F17%2F1%2F5.html&amp;rft.genre=article&amp;rft.atitle=From+Schelling+to+Schools%3A+A+Comparison+of+a+Model+of+Residential+Segregation+with+a+Model+of+School+Segregation&amp;rft.jtitle=Journal+of+Artificial+Societies+and+Social+Simulation&amp;rft.stitle=JASSS&amp;rft.issn=1460-7425&amp;rft.date=2014&amp;rft.volume=17&amp;rft.issue=1&amp;rft.pages=5&amp;rft.aufirst=Victor+Ionut&amp;rft.aulast=Stoica&amp;rft.au=Flache%2C+Andreas"> </span>
+	</p><p class="artauthor"><a href="http://jasss.soc.surrey.ac.uk/17/1/5/stoica.html">Victor Ionut Stoica and Andreas Flache</a> (2014)
+	</p><p class="arttitle">
+	From Schelling to Schools: A Comparison of a Model of Residential Segregation with a Model of School Segregation
+	</p><p class="artlocation"><i>Journal of Artificial Societies and Social Simulation</i> <b>17</b> (1)  5<a href="http://jasss.soc.surrey.ac.uk/admin/submit.html#donation"><img src="./139_files/open-access-logo120.jpg" align="right" alt="JASSS thanks the authors of this article for their donation"></a><br>
+	&lt;http://jasss.soc.surrey.ac.uk/17/1/5.html&gt;</p>
+	<p class="artdates">
+	Received: 30-Jul-2012
+	&nbsp;&nbsp;&nbsp;Accepted: 02-Jul-2013
+	&nbsp;&nbsp;&nbsp;Published: 31-Jan-2014
+	</p><p style="clear:both"></p>
+<hr>
+</div>
+<div class="content">
+<!-- draws and processes the tools menu for a JASSS article
+	NG 13 April 2011
+-->
+<script language="javascript" type="text/javascript">
+<!--
+
+function validate() {
+	if (document.tellafriend.name.value.length==0) {
+		alert("Please enter your name");
+		document.tellafriend.name.focus();
+		return false;
+	}
+	if (!echeck(document.tellafriend.email.value)) {
+		alert("Please enter your valid email address");
+		document.tellafriend.email.focus();
+		return false;
+	}
+	if (!echeck(document.tellafriend.fmail1.value)) {
+		alert("Please enter a valid colleague's email address");
+		document.tellafriend.fmail1.focus();
+		return false;
+	}
+	document.tellafriend.submit()
+	return true;
+}
+
+function validate1() {
+	if (!echeck(document.alert_confirm.email.value)) {
+		alert("Please enter your valid email address");
+		return false;
+	}
+	document.alert_confirm.submit()
+	return true;
+}
+
+/**
+ * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+ */
+
+function echeck(str) {
+
+		if ((str==null)||(str=="")){
+				return false
+			}
+
+		var at="@"
+		var dot="."
+		var lat=str.indexOf(at)
+		var lstr=str.length
+		var ldot=str.indexOf(dot)
+		if (str.indexOf(at)==-1){
+		   return false
+		}
+
+		if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+		   return false
+		}
+
+		if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+		    return false
+		}
+
+		 if (str.indexOf(at,(lat+1))!=-1){
+		    return false
+		 }
+
+		 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+		    return false
+		 }
+
+		 if (str.indexOf(dot,(lat+2))==-1){
+		    return false
+		 }
+		
+		 if (str.indexOf(" ")!=-1){
+		    return false
+		 }
+
+ 		 return true					
+	}
+
+function resizeText(multiplier) {
+  if (document.body.style.fontSize == "") {
+    document.body.style.fontSize = "1.0em";
+  }
+  document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (multiplier * 0.2) + "em";
+  return false;
+}
+
+/* implement the show/hide link for the sidebar panel */
+
+function hidePanel() {
+		var panel = document.getElementById('tools');
+        var icon = document.getElementById('toolsicon');
+        if (panel.style.display=="none") {
+        	panel.style.display = "block";
+        	icon.style.display = "none";
+        }
+        else {
+        	panel.style.display = "none";
+        	icon.style.display = "block";
+        }      	
+}
+
+//-->	
+</script>
+
+<div id="toolsicon" style="display: none;">
+			<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#" onclick="hidePanel()">Show<br>tools</a>
+</div>	
+
+<div class="tools" id="tools">
+
+	<div class="menu">
+		
+		<div class="title">
+			<span style="float:right;"><a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#" onclick="hidePanel()" style="font-size:90%">Hide</a></span><br> 
+			<b>Article Tools</b>
+		</div>
+	
+		<div class="content">
+	
+			<div class="panel">
+				<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#" title="Decrease font size" onclick="resizeText(-1)" style="font-size: smaller">Smaller</a>
+				Text
+				<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#" title="Increase font size" onclick="resizeText(1)" style="font-size: larger">Bigger</a>
+			</div>  
+			
+			<!-- see http://www.addthis.com/ -->
+			
+			<script type="text/javascript">
+				var addthis_config = {
+	     		ui_cobrand: "JASSS"
+				}
+			</script>
+			
+			<div class="panel">
+				Bookmark: 
+				<div class="addthis_toolbox addthis_default_style" style="padding:5px;">
+					<a class="addthis_button_email addthis_button_preferred_1 at300b" target="_blank" title="Email" href="http://jasss.soc.surrey.ac.uk/17/1/5.html#"><span class="at16nc at300bs at15nc at15t_email at16t_email"><span class="at_a11y">Share on email</span></span></a>
+  					<a class="addthis_button_print addthis_button_preferred_2 at300b" title="Print" href="http://jasss.soc.surrey.ac.uk/17/1/5.html#"><span class="at16nc at300bs at15nc at15t_print at16t_print"><span class="at_a11y">Share on print</span></span></a>
+  					<a class="addthis_button_gmail addthis_button_preferred_3 at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=gmail&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F17%2F1%2F5.html&title=From%20Schelling%20to%20Schools&ate=AT-unknown/-/-/5441268ff8795381/8/5321823c76ee32e6&frommenu=1&uid=5321823c76ee32e6&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="Gmail"><span class="at16nc at300bs at15nc at15t_gmail at16t_gmail"><span class="at_a11y">Share on gmail</span></span></a>
+<!--  				<a class="addthis_button_citeulike"></a> -->
+<!-- 				<a class="addthis_button_delicious"></a> -->
+<!-- 				<a class="addthis_button_digg"></a> -->
+				    <a class="addthis_button_facebook at300b" title="Facebook" href="http://jasss.soc.surrey.ac.uk/17/1/5.html#"><span class="at16nc at300bs at15nc at15t_facebook at16t_facebook"><span class="at_a11y">Share on facebook</span></span></a>
+				    <a class="addthis_button_linkedin at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=linkedin&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F17%2F1%2F5.html&title=From%20Schelling%20to%20Schools&ate=AT-unknown/-/-/5441268ff8795381/2&frommenu=1&uid=5441268febad4e4c&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="LinkedIn"><span class="at16nc at300bs at15nc at15t_linkedin at16t_linkedin"><span class="at_a11y">Share on linkedin</span></span></a>
+				    <a class="addthis_button_reddit at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=reddit&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F17%2F1%2F5.html&title=From%20Schelling%20to%20Schools&ate=AT-unknown/-/-/5441268ff8795381/3&frommenu=1&uid=5441268f81070103&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="Reddit"><span class="at16nc at300bs at15nc at15t_reddit at16t_reddit"><span class="at_a11y">Share on reddit</span></span></a>
+				    <a class="addthis_button_researchgate at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=researchgate&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F17%2F1%2F5.html&title=From%20Schelling%20to%20Schools&ate=AT-unknown/-/-/5441268ff8795381/4&frommenu=1&uid=5441268f165d4666&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="ResearchGate"><span class=" at300bs at15nc at15t_researchgate"><span class="at_a11y">Share on researchgate</span></span></a>
+				    <a class="addthis_button_stumbleupon at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=stumbleupon&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F17%2F1%2F5.html&title=From%20Schelling%20to%20Schools&ate=AT-unknown/-/-/5441268ff8795381/5&frommenu=1&uid=5441268f68374068&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="StumbleUpon"><span class="at16nc at300bs at15nc at15t_stumbleupon at16t_stumbleupon"><span class="at_a11y">Share on stumbleupon</span></span></a>
+				    <a class="addthis_button_xing at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=xing&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F17%2F1%2F5.html&title=From%20Schelling%20to%20Schools&ate=AT-unknown/-/-/5441268ff8795381/6&frommenu=1&uid=5441268fc413125e&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="XING"><span class="at16nc at300bs at15nc at15t_xing at16t_xing"><span class="at_a11y">Share on xing</span></span></a>
+				    <a class="addthis_button_twitter at300b" title="Tweet" href="http://jasss.soc.surrey.ac.uk/17/1/5.html#"><span class="at16nc at300bs at15nc at15t_twitter at16t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+				    <a class="addthis_button_baidu at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=baidu&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F17%2F1%2F5.html&title=From%20Schelling%20to%20Schools&ate=AT-unknown/-/-/5441268ff8795381/7&frommenu=1&uid=5441268fad418ce3&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="Baidu"><span class="at16nc at300bs at15nc at15t_baidu at16t_baidu"><span class="at_a11y">Share on baidu</span></span></a>
+				    <a class="addthis_button_orkut"></a>
+				<div class="atclear"></div></div>
+			</div>
+			
+			<script type="text/javascript" src="./139_files/addthis_widget.js"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe id="_atssh365" title="AddThis utility frame" src="./139_files/sh176.htm" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px; left: 0px; top: 0px;"></iframe></div><script type="text/javascript" src="./139_files/core159.js"></script>
+		
+			<div id="CollapsiblePanel1" class="CollapsiblePanel CollapsiblePanelClosed">
+		        <div class="CollapsiblePanelTab"> Export citation</div>       
+		      	<div class="CollapsiblePanelContent" style="display: none;">
+					<ul>
+			   		 	<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=plain">Plain text</a></li>
+			   		 	<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=html">HTML</a></li>
+						<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=ris">Reference Manager</a></li>
+				   		<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=ris">EndNote</a></li>
+			    		<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=ris">ProCite</a></li>
+			   		 	<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=bibtex">BibTex</a></li>
+		   		 	</ul>
+		         </div>  
+			</div>    
+			<script type="text/javascript"> var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1");</script>
+			
+			
+			<div id="CollapsiblePanel2" class="CollapsiblePanel CollapsiblePanelClosed">
+		        <div class="CollapsiblePanelTab"> Articles with the same author(s)</div>
+		        <div class="CollapsiblePanelContent" style="display: none;">
+	  				<ul> 
+		  				<li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_jasss.php?search=author">From JASSS</a></li>
+					    <li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_google.php?search=author">From Google Scholar</a></li>
+				    </ul>
+	             </div>  
+	 		</div>   
+			<script type="text/javascript"> var CollapsiblePanel2 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel2");</script>
+			
+			<div id="CollapsiblePanel3" class="CollapsiblePanel CollapsiblePanelClosed">
+	        	<div class="CollapsiblePanelTab">Articles with similar keywords</div>
+	          	<div class="CollapsiblePanelContent" style="display: none;">
+	          	<ul>
+				    <li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_jasss.php?search=kw">From JASSS</a></li>
+				    <li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_google.php?search=kw">From Google Scholar</a></li>	
+				 </ul>
+	           </div>  
+	    	</div>    
+			<script type="text/javascript"> var CollapsiblePanel3 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel3");</script>
+			
+			<div id="CollapsiblePanel4" class="CollapsiblePanel CollapsiblePanelClosed">
+	        	<div class="CollapsiblePanelTab"> Articles citing this article</div>
+	        	<div class="CollapsiblePanelContent" style="display: none;">
+	          		<ul>
+					    <li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_jasss.php?search=cite">From JASSS</a></li>
+						<li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_google.php?search=cite">From Google Scholar</a></li>
+					</ul>
+	        	</div>  
+	    	</div>  
+			<script type="text/javascript"> var CollapsiblePanel4 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel4");</script>
+			
+			<div id="getPDF" class="panel">
+				<a href="http://jasss.soc.surrey.ac.uk/admin/get_pdf.php">Download this article in PDF format</a>
+	    	</div>  
+			
+			<div id="CollapsiblePanel5" class="CollapsiblePanel CollapsiblePanelClosed">
+	        	<div class="CollapsiblePanelTab">Alert me when this article is cited within JASSS</div>                   			
+         		<div class="CollapsiblePanelContent" style="display: none;">
+					<form name="alert_confirm" action="http://jasss.soc.surrey.ac.uk/admin/alert_confirm.php" onsubmit="return validate1()" method="post">
+						Your email:
+						<input size="20" name="email" maxlength="45">
+						<input type="hidden" name="refurl" value="/17/1/5.html"> 
+						<center> <input onclick="validate1();" type="button" value="Submit"> </center>
+					</form>
+             	</div>  
+	     	</div> 
+			<script type="text/javascript"> var CollapsiblePanel5 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel5");</script>
+			
+			<div id="CollapsiblePanel6" class="CollapsiblePanel CollapsiblePanelClosed">
+	        	<div class="CollapsiblePanelTab">Send a link to this article to a colleague</div>
+				<div class="CollapsiblePanelContent" style="display: none;">
+					<form name="tellafriend" action="http://jasss.soc.surrey.ac.uk/admin/tellafriend.php" onsubmit="return validate()" method="post">
+						Your name:<br>
+						<input size="20" name="name" maxlength="45"><br>
+						Your email:<br>
+						<input size="20" name="email" maxlength="45"><br>
+						Your colleague’s email:<br>
+						<input size="20" name="fmail1" maxlength="50"><br>
+						<input type="hidden" name="refurl" value="/17/1/5.html"> 
+						<center> <input onclick="validate();" type="button" value="Submit"> </center>
+					</form>
+				</div>  
+	    	</div>   
+			<script type="text/javascript"> var CollapsiblePanel6 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel6");</script>
+	
+		</div>	<!-- content -->
+	</div> <!-- menu -->
+</div> <!-- tools -->
+              
+
+
+
+    <div class="article">
+<h3><img src="./139_files/bullet.gif" alt="* ">Abstract</h3>
+<dl><dt></dt><dd>
+We address theoretically whether and under what conditions Schelling's celebrated result of 'self-organized' unintended residential segregation may also apply to school segregation. We propose here a computational model of school segregation that is aligned with a corresponding Schelling-type model of residential segregation. To adapt the model for application to school segregation, we move beyond previous work by combining two preference arguments in modeling parents' school choice, preferences for the ethnic composition of a school and preferences for minimizing the travelling distance to the school. In a set of computational experiments we assessed the effects of population composition and distance preferences in the school model. We found that a preference for nearby schools can suppress the trend towards self-organized segregation obtained in a baseline condition where parents were indifferent towards distance. We then investigated the joint effects of the variation of agents' 'tolerance' for out-group members and distance preference. We found that integrated distributions were preserved under a much broader range of conditions than in the absence of a preference for nearby schools. We conclude that parents' preferences for nearby schools may be an important factor in tempering for school choice the segregation dynamics known from models of residential segregation.
+<p></p></dd><dt><b>Keywords:</b></dt><dd>
+Schelling Model, Ethnic Segregation, School Segregation, Model Alignment
+</dd></dl><hr noshade="">
+<h3><img align="Bottom" src="./139_files/bullet.gif" width="23" height="23" alt="* "> Introduction
+</h3><dl compact="">
+<dt><b><a name="1.1">1.1</a></b></dt><dd>Schelling's model of residential segregation (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#schelling1969">Schelling 1969</a>,  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#schelling1971">1971</a>,  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#schelling1978">1978</a>) shows that the high level of ethnic (or, racial, in the American terminology) residential segregation observed in many modern cities can be an unintended outcome of the residential choices of individuals who have only the "mild" ethnic preference to not be outnumbered too much by other ethnic groups in their local residential neighborhood. However, Schelling's result has hardly influenced the study of other social segregation phenomena, most notably not in the debated field of school segregation (e.g. <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#sohoni2009">Sohoni and Saporito 2009</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#van2009">Van Houtte and Stevens 2009</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#logan2008">Logan et al. 2008</a>). We make a first step to advance existing work based on Schelling into the field of school segregation and to explore similarities and differences between residential and school segregation dynamics with an alignment (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#axtell1996">Axtell et al. 1996</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#rouchier2008">Rouchier et al. 2008</a>) of simple theoretical models of both phenomena. 
+
+<p></p></dd><dt><b><a name="1.2">1.2</a></b></dt><dd>In Schelling's model, integrated residential distributions are typically unstable, even when individuals are largely tolerant of other ethnic groups in their neighborhood, but prefer not to belong to too small a minority. If residents of a small local minority leave a neighborhood, this changes the local ethnic mix such that members of their ethnic group become even more likely to leave, which eventually pushes the residential distribution away from instable integration towards stable segregation. This self-reinforcing "preference dynamics" (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#clark2008">Clark and Fossett 2008</a>) can generate much more segregation than would be needed to satisfy individuals' ethnic preferences, an undesired outcome from the individuals' perspective, with potentially severe negative societal consequences. Similar preference dynamics may underlie the high level of ethnic school segregation that can be found in many Western countries nowadays (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#logan2008">Logan et al. 2008</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#baker2011">Baker et al. 2011</a>).
+
+<p></p></dd><dt><b><a name="1.3">1.3</a></b></dt><dd>School segregation refers to the disproportionate concentration of ethnic minorities in certain schools and is a scientifically as well as politically contested topic (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#sohoni2009">Sohoni and Saporito 2009</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#van2009">Van Houtte and Stevens 2009</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#logan2008">Logan et al. 2008</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#bovens2006">Bovens and Trappenburg 2006</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#karsten2006">Karsten et al. 2006</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#karsten2003">Karsten et al. 2003</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#saporito2003">Saporito 2003</a>). For example, in 2006, about 50% of primary schools in the 4 biggest Dutch cities were considered "black schools", having more than 50% non-western ethnic minority pupils, a proportion that far exceeded the national average of 14% (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#cbs2007">CBS 2007</a>). In particular, studies of school-choice dynamics point to the phenomenon of "white flight" as a possible cause. Both for the U.S. (e.g. <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#logan2008">Logan et al. 2008</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#sohoni2009">Sohoni and Saporito 2009</a>) as well as for Western-European countries (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#kristen2008">Kristen 2008</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#karsten2006">Karsten et al. 2006</a>), the evidence suggests that parents of the dominant ethnic group tend to choose schools outside of the local neighborhoods with relatively high concentrations of ethnic minorities. Researchers and politicians alike are concerned about the negative societal consequences of school segregation for inequality and integration of minorities (e.g.<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#karsten2006">Karsten et al. 2006</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#moody2001">Moody 2001</a>).
+
+<p></p></dd><dt><b><a name="1.4">1.4</a></b></dt><dd>Empirical research on parents' school-choice motives suggests a potential for preference dynamics. A survey study for the Netherlands (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#karsten2003">Karsten et al. 2003</a>) found that one of the most important choice motives for native Dutch parents is whether the school comprises children with the same cultural background "as us" (see also  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#coenders2004">Coenders et al. 2004</a>). If parents were to choose schools solely based on such preferences, preference dynamics might ensue which could explain the high levels of school segregation observed in Dutch primary schools. However, theories of preference dynamics in residential segregation cannot be readily generalized to school segregation. Given the strong residential segregation in Western countries, schools would be segregated even without preference dynamics, if school-choosers primarily minimize distance between home and school. In fact studies of micro-level school-choice motives revealed that parents deem both ethnic composition and distance important (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#bell2009">Bell 2009</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#denessen2005">Denessen et al. 2005</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#kristen2008">Kristen 2008</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#karsten2006">Karsten et al. 2006</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#karsten2003">Karsten et al. 2003</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#coenders2004">Coenders et al. 2004</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#saporito2003">Saporito 2003</a>). Parents' preference for nearby schools may even curb self-organized segregation because it discourages "flight" to more distant but ethnically more desirable schools. But whether that actually happens depends on a complex interplay of parents' choice behavior with the residential composition of their own and neighboring neighborhoods, as well as the capacity, geographical locations and current composition of available schools.
+
+<p></p></dd><dt><b><a name="1.5">1.5</a></b></dt><dd>The complexities of school-choice dynamics cannot simply be addressed within existing models of preference dynamics in residential segregation (e.g.  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#clark2008">Clark and Fossett 2008</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fossett2006a">Fossett 2006a</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#grauwin2009">Grauwin et al. 2009</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#hatna2012">Hatna and Benenson 2012</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#macy2006">Macy and van de Rijt 2006</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#stauffer2007">Stauffer and Solomon 2007</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#vinkovic2006">Vinkovic and Kirman 2006</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#zhang2004a">Zhang 2004a</a>, <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#zhang2004b">2004b</a>). When it comes to school-choice dynamics, we need to distinguish between the residential location of a household which defines the distances to available schools as well as the ethnic composition of the residential neighborhood, and the ethnic composition of the schools that children from this household attend. Schools may recruit their membership from the local and surrounding local neighborhoods, but when parents prefer to choose more distant schools for their children, schools can also have an ethnic composition that differs from that of the local residential neighborhood. This, however, can only happen when parents feel that the schools' features, in particular its ethnic composition, are sufficiently desirable to compensate for the costs of increased distance between home and school. This balancing between distance and ethnic composition is a feature not included in models of residential segregation. Accordingly, we propose here a model of school segregation that includes both elements and combines them with ethnic preference dynamics similar to those known from models of residential segregation dynamics based on Schelling's work. In this paper, we want to study whether the basic features of the Schelling dynamic hold up when residential choices are replaced with school choices. That is: would strong segregation also arise despite mild ethnic preferences when individuals choose between schools given a fixed residential location, rather than changing their residential locations? We will address this theoretically by means of Agent Based Modeling (ABM) <sup><a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fn1">[1]</a></sup> (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#nikolai2009">Nikolai and Madey 2009</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#macywiller2002">Macy and Willer 2002</a>). For this purpose, we first align our simple model of school segregation with a Schelling-type model of residential segregation, including some modifications of Schelling's original model proposed in recent follow-up research (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#zhang2004a">Zhang 2004a</a>, <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#zhang2004b">2004b</a>). In both models, agents represent households with a residential location. In the school-choice model, the residential location is fixed and agents face the choice of sending their child to one out of a set of available schools with a known location and ethnic composition. In the residential model, agents can change where they live and can choose between a set of available residential locations with known location and local ethnic composition. In the school model, next to ethnic preferences, we also include preferences for nearby schools. However, to explore differences and similarities between the dynamics of both models, we first compare the residential model to a school model with ethnic preferences only, before adding the new element of distance preferences to the school model. 
+
+<p></p></dd><dt><b><a name="1.6">1.6</a></b></dt><dd>We follow in our residential model the cellular grid modeling of the residential space that is typically employed in studies in the wake of Schelling (e.g.  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#hegselmann1998">Hegselmann and Flache 1998</a>; <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#zhang2004a">Zhang 2004a</a>, <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#zhang2004b">2004b</a>). Residential neighborhoods are in these models often seen as small and overlapping, but each agent or household has a unique local neighborhood different from all other neighborhoods. Our school model without preferences for nearby schools can be seen as similar to a different strand of residential segregation models, that follow Schelling's "bounded neighborhood" model (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#schelling1978">Schelling 1978</a>; see also  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#hatna2012">Hatna and Benenson 2012</a>) also used in Fossett's simulation studies of residential segregation (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fossett2006a">Fossett 2006a</a>, <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fossett2006b">2006b</a>; <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fossett2005">Fossett and Warren 2005</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#clark2008">Clark and Fossett 2008</a>). In a bounded neighborhood model, the residential space is divided into blocks (bounded neighborhoods) typically comprising a number of households considerably larger than the size of small, local von Neuman or Moore neighborhoods that are often used in cellular models of segregation dynamics (e.g.  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#hegselmann1998">Hegselmann and Flache 1998</a>). The households, or agents, evaluate the attractiveness of the ethnic composition of a residential location in terms of the composition of the entire bounded neighborhood into which the location falls. In a similar vein, we assume in our school model that the size of a school considerable exceeds the size of small local neighborhoods and that all parents whose children attend a school "see" the same ethnic composition of the school and evaluate the school's attractiveness in terms of it. An important difference that remains between bounded neighborhood models and our school model is that in our school model the residential location of a household is fixed, while the school that the child from that household attains can be changed as outcome of school choice. This adds to the model the distance between home and school as a new element of agents' utility function that has not been addressed before in studies of segregation dynamics.
+
+
+</dd></dl><h3><img align="Bottom" src="./139_files/bullet.gif" width="23" height="23" alt="* "> The models</h3><dl compact="">
+
+<dt><b><a name="2.1">2.1</a></b></dt><dd>In both models, the residential and the school model, households have a current residential location on a cellular grid and an ethnicity. For simplicity, only two ethnic groups (A and B) are distinguished and households are assumed to have exactly one child for which a school needs to be chosen. For a detailed view and a better understanding of the models we show in the annexes flowcharts of the sequence of steps in the process modeled.
+
+<p></p></dd><dt><b><a name="2.2">2.2</a></b></dt><dd>In the initial set-up of our model we generate households, neighborhoods and – for the school model – schools. The school neighborhood or 'catchment area' is modeled as the geographic region that is nearer to the focal school than to any other school and is used to initially populate the school. In the residential model, the local residential neighborhood is modeled as a diamond-shaped neighborhood, approximating a circular region around the residential location. A household has an ethnic preference for the ethnic composition of its school or residential neighborhood. Each school has a fixed number of "slots" and is placed on a certain geographical location on the rectangular grid. Geographic space is represented by a two dimensional grid with 100x100 locations, embedded on a torus. Each location can hold a household or a school, but some locations are left empty to allow for movement across neighborhoods or schools. To simplify terminology, we use in the following "local unit" when we refer to either a residential neighborhood (in the residential model) or school (in the school model), and correspondingly we use "local composition" to refer to the ethnic mix within the neighborhood of the local unit.
+
+<p></p></dd><dt><b><a name="2.3">2.3</a></b></dt><dd>To represent school neighborhoods (or, catchment areas), we construct in the school model so-called "irregular cells" surrounding schools by means of Voronoi diagrams (e.g.  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#flache2001">Flache and Hegselmann 2001</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#hegselmann2000">Hegselmann et al. 2000</a>;  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#wilensky2006">Wilensky 2006</a>). These cells encompass all geographical locations that are nearer to the focal school than to any other school in terms of Euclidian distance. To generate the Voronoi diagram we use randomly assigned locations for the schools as so-called "generator" points. Throughout, we use 25 schools with Voronoi cells superimposed on the 100x100 cellular grid. The size of a school is determined by the number of geographical locations encompassed by its neighborhood. Figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig1">1</a> shows an example of the construction of school neighborhoods.
+       
+       <p></p><center>
+       <a name="fig1"></a><table border="0" cellspacing="2" cellpadding="1">
+       <tbody><tr align="Center" valign="Middle"><td>
+       <img src="./139_files/figure_1.jpg" alt="Figure 1">
+       </td></tr>
+       <tr align="Center" valign="Middle"><td>
+       <b>Figure 1</b>. Voronoi diagram representing randomly distributed schools with surrounding catchment areas. Each Voronoi cell represents a school neighborhood whose size is determined by the number of geographical locations encompassed by the cell. A school is located at the center of each cell.
+       </td></tr></tbody></table>
+       </center><p>
+       
+</p><p></p></dd><dt><b><a name="2.4">2.4</a></b></dt><dd>We want to know whether ethnic preferences have a similar effect on school segregation as they have on residential segregation and how this is affected by a simultaneous preference for a short distance between home and school. To model the ethnic preference component of agents' preference function we build on previous work by Zhang (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#zhang2004b">2004</a>) and use a single-peaked linear function that maps the local proportion of members of the same group on the attractiveness of the school or residential location for an agent. An example is depicted in figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig2">2</a>.
+       
+       
+<p></p><center>
+<a name="fig2"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./139_files/figure_2.jpg" alt="Figure 2">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 2</b>. Ethnic preference for composition of neighborhood or school. <i>M</i> is a constant factor representing the desirability of 100% own ethnic group, and <i>f</i> represents the fraction of in-group members of the neighborhood or school population that is optimal for the agent.
+</td></tr></tbody></table>
+</center><p>
+
+
+</p><p></p></dd><dt><b><a name="2.5">2.5</a></b></dt><dd>The illustrated function peaks at <i>n=f p</i> where <i>f</i> is the optimal fraction of the total number of agents (<i>p</i>) in the local composition. Notice that the agents can actually prefer a certain level of local ethnic integration above perfect segregation, reflecting the aggregate-level empirical pattern in studies on residential preferences in the U.S. (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#clark2008">Clark and Fossett 2008</a>). More technically, on the left side of <i>n=f p</i>, the function is linearly increasing, whereas on the right side of this point, it is linearly decreasing. Agents always obtain a utility of zero if the local composition comprises only out-group members, and they obtain a utility of <i>M</i> &gt; 0 when the local composition comprises only in-group members. 
+
+<p></p></dd><dt><b><a name="2.6">2.6</a></b></dt><dd>Formally, we model ethnic preference <i>P</i> with the function given in equation (1).
+
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq1 f.jpg" width="304" height="92" alt="Equation"></td>
+<td align="Right" valign="Middle" width="40">
+(1)
+</td></tr></tbody></table>
+</center><p>
+where <i>p</i> is the total number of agents in the neighborhood or school, and <i>x</i> the local number of agents of the own group. 
+
+</p><p></p></dd><dt><b><a name="2.7">2.7</a></b></dt><dd>In the school model, agents can evaluate a school not only in terms of its ethnic composition, but also in terms of the distance between their residential location and the school. More explictly, an agent's utility <i>U</i> for the school chosen is obtained from a Cobb-Douglas utility function. Technically,
+
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq2 f.jpg" width="214" height="45" alt="Equation"></td>
+<td align="Right" valign="Middle" width="40">
+(2)
+</td></tr></tbody></table>
+</center><p>
+where α is a parameter which controls how much weight is put on the ethnicity preference (<i>P</i>) relative to the distance preference (<i>D</i>). <i>P</i> is obtained from equation (1), <i>D</i> represents the "nearness" of the school, implemented as the mirror image of the geographical distance between residential location of the household and the school. Technically, the nearness of school <i>i</i> to agent <i>j</i>, <i>D<sub>i,j</sub></i>, is given by 
+
+</p><p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq3 f.jpg" width="496" height="67" alt="Equation"></td>
+<td align="Right" valign="Middle" width="40">
+(3)
+</td></tr></tbody></table>
+</center><p>
+where <i>dist<sub>max</sub></i> is a maximum distance that serves as normalization factor and <i> dist<sub> school(i),agent(j)</sub></i> is the distance between the agent's residential location and the school. Throughout this paper, we assume <i>dist<sub>max</sub></i> to be the maximum distance between two locations in the geographical space. For a two dimensional grid with <i>N × N</i> locations embedded on a torus <i>dist<sub>max</sub></i> = N/√2.
+
+</p><p></p></dd><dt><b><a name="2.8">2.8</a></b></dt><dd>In the actual decision function, the utility an agent would obtain from choosing a certain residential location (or school), is compared against a satisfaction threshold represented by a further model parameter (<i>T</i>). Only when <i>P</i> &lt; <i>T</i> is the agent assumed to be sufficiently dissatisfied with the residential location or school to consider whether to move to a different location (or change school). With this, we follow Schelling's original approach in assuming that agents are "satisficing" (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#simon1956">Simon 1956</a>).
+
+<p></p></dd><dt><b><a name="2.9">2.9</a></b></dt><dd>We first implemented a simple Schelling type model (Model 0) of residential segregation, then followed by two school segregation models without (Model 1) and with distance preferences (Model 2). In all models, ethnic groups can differ in their ethnic preferences, but are assumed to be homogenous internally. Distance preferences are meaningless in model 0 and are not taken into account in model 1, i.e. <i>α</i> = 1 in both models. Throughout, all agents are initially assigned a random location in the world. 
+
+<p></p></dd><dt><b><a name="2.10">2.10</a></b></dt><dd>Residential model and school model are alike in most features of model initialization and model dynamic. The following applies to both models unless explicitly noted otherwise. The maximum number of agents populating the model is <i>N<sub>max </sub></i>= 10.000. Population size is throughout assumed to be <i>N </i>= 8700, a value that falls within a broader range of filling rates for which we found sufficient movement of agents to obtain model convergence in reasonable time. The distribution across the ethnic types A and B is varied in the simulation experiments. In every round of the simulation, 500 randomly chosen agents can change their location (or school). However, the number of agents that actually change their location is limited by the number of free spaces. More precisely, for each selected agent, we calculate satisfaction with the current local unit chosen based on the utility function given by equations (1) and (2), the current local ethnic composition and their ethnic preferences. In the residential model, we define an agent's neighborhood as being a diamond-shaped neighborhood of the residential location. The neighborhood encompasses the set of locations whose center points fall within a certain Euclidian distance around the center point of the focal cell. In figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig3">3</a> we illustrate the neighborhood for a radius <i>r</i> = 3. The local proportion of in-group and out-group members is calculated relative only to the numbers of cells (or "slots" of a school) that are actually occupied.
+       
+       <p></p><center>
+       <a name="fig3"></a><table border="0" cellspacing="2" cellpadding="1">
+       <tbody><tr align="Center" valign="Middle"><td>
+       <img src="./139_files/figure_3.jpg" alt="Figure 3">
+       </td></tr>
+       <tr align="Center" valign="Middle"><td>
+       <b>Figure 3</b>. The squares with grey color show the cells that fall within the residential neighborhood of the black center cell for a radius of <i>r</i> = 3.
+       </td></tr></tbody></table>
+       </center><p>
+       
+       
+</p><p></p></dd><dt><b><a name="2.11">2.11</a></b></dt><dd>If the satisfaction with the local composition falls below the satisfaction threshold <i>T</i> then the agent will move to a random location where his requirements are satisfied, if one is available. In the residential model, this new location is selected out of a maximum of 100 randomly chosen empty locations. In the school model, all schools that still have empty slots are considered in random sequence. The agent will move to the first found location out of the locations investigated for which his utility exceeds the threshold <i>T</i>. If, however, a satisfactory location is not found in the locations that were searched, the search will continue. We included the assumption that the search can continue in order to model the notion that in adaptive decision making actors adapt not only their behavior but also their aspirations over time to the experiences they make (e.g.  <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#macy2002">Macy &amp; Flache 2002</a>; <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#bendor2003">Bendor et al. 2003</a>). More concretely, when dissatisfied agents find no alternative satisfactory location they will, in the residential model, randomly select another 100 empty locations to be inspected. In the school model, all schools which still have empty slots are re-considered. In this second pass, the agent will move in both models if the utility that would be obtained at the inspected location exceeds the utility derived at the current location, even if the utility at the destination would fall below the satisfaction threshold <i>T</i>. In other words the agent will move to the first location he finds where he is happier. If a better location is not found then the agent will stay. Within one round the agents investigating a new location calculate their utility function based on the population distribution that is present at the beginning of the round. This models the assumption that agents who attain moving options within the same round take their decisions quasi simultaneously. An agent is, however, unable to move to a location or occupy a slot at a school that has been claimed by another agent in the same round. All agents will move simultaneously to their selected locations or new schools at the end of the round.
+
+<p></p></dd><dt><b><a name="2.12">2.12</a></b></dt><dd>For the school model in particular, we assume each agent has one child that initially is enrolled at the closest school, the school located at the generator point of the Voronoi cell in which the residential location of the household falls. This means that initially the composition and filling-rate of a school is representative of its neighborhood. 
+
+	
+<h4> Segregation indices</h4>
+<p></p></dd><dt><b><a name="2.13">2.13</a></b></dt><dd>To quantify segregation in both models, we devised a set of measures based on the dissimilarity index (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#massey1988">Massey and Denton 1988</a>). This index expresses how much, taken across a set of local units, the ethnic composition of the local unit differs from the population composition on average. Maximal segregation occurs when the index obtains a value of one, the theoretical lower bound is zero. Equation (4) shows how the basic measure of the dissimilarity index is calculated.
+
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq4.jpg" width="344" height="105" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(4)
+</td></tr></tbody></table>
+</center><p>
+In equation (4), <i>N<sub>ix</sub></i> expresses the number of members of ethnicity <i>"x" </i>(A or B) of the  local unit <i>"i"</i> (neighborhood or school) and <i>N<sub>x</sub></i> is the number of members of that group in the overall population. For the school model, we use schools as local unit for calculating the index that we refer to as the "<b>school segregation index</b>". For comparison with the school model, we distinguish two segregation measures for the residential model which are differently "fine grained". The "<b>variable neighborhood index</b>" uses the neighborhood defined by the radius <i>r</i> that agents use to evaluate neighborhood composition. Finally, the "<b>school-neighborhood index</b>" takes school-neighborhoods as local unit, for comparison with the school segregation index.
+
+
+</p></dd></dl><h3><img align="Bottom" src="./139_files/bullet.gif" width="23" height="23" alt="* "> Results</h3><dl compact="">
+
+<dt><b><a name="3.1">3.1</a></b></dt><dd>Schelling's model shows that theoretically, segregation may arise even in conditions where a non-segregated distribution would satisfy all individuals. We wanted to know whether and under which conditions this also applies for the school model. To begin with, we compare the residential model to the school model without distance preferences. The school model without distance preference is similar to a "bounded neighborhood" version of the residential model and should thus produce similar results. To assess this, we first describe a baseline experiment in which we compare the school model without distance preferences with the residential model and identify the conditions under which the behaviors of both models align. Then, we explore whether the effects that we found without distance preferences hold up when we introduce preferences for nearby schools into the school model, under various different conditions. 
+
+
+
+<h4> Baseline experiment</h4>
+<p></p></dd><dt><b><a name="3.2">3.2</a></b></dt><dd>To establish a baseline for comparison, we began by simulating a prototypical residential segregation dynamic. We chose an ethnic population composition and preference parameters such that individuals of both groups would be satisfied if the local ethnic composition at their residential location equals the overall ethnic composition of the population. For this, we assumed that members of both groups reach their maximal utility of <i>U</i>=1 with 70% in-group members (i.e. <i>f<sub>a</sub></i> = <i>f<sub>b</sub></i> = 0.7). Furthermore, they reach a utility of <i>U</i>=<i>M</i>=0.8 with 100% in-group members. To assure that these segregationist preferences are "mild", we set the satisfaction threshold to <i>T</i>=0.4. As figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig4">4</a> below illustrates, both groups can still be satisfied with a local out-group majority under this parameterization.
+
+
+       <p></p><center>
+       <a name="fig4"></a><table border="0" cellspacing="2" cellpadding="1">
+       <tbody><tr align="Center" valign="Middle"><td>
+       <img src="./139_files/figure_4_v3.jpg" alt="Figure 4">
+       </td></tr>
+       <tr align="Center" valign="Middle"><td>
+       <b>Figure 4</b>. Green line represents the preference function for group B with peak at <i>p<sub>b </sub></i>= 1-<i>f<sub>b</sub></i>. (<i>M<sub>b </sub></i>= 0.8, <i>f<sub>b </sub></i>= 0.7). The red line represents the preference function for group A with peak at <i>p<sub>a </sub></i>= <i>f<sub>a</sub></i>. (<i>M<sub>a </sub></i>= 0.8, <i>f<sub>a </sub></i>= 0.7). The blue line illustrates the satisfaction threshold <i>T </i>= 0.4.
+       </td></tr></tbody></table>
+       </center><p>
+       
+       
+
+</p><p></p></dd><dt><b><a name="3.3">3.3</a></b></dt><dd>Figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig4">4</a> shows that for group A, utility falls below the satisfaction threshold <i>T</i> only when the local proportion of group A members is less than <i>p<sub>a,min</sub></i> = <i>f<sub>a</sub></i> * <i>T</i> = 0.28, while group B members will only be dissatisfied when the proportion of group A members exceeds <i>p<sub>a,max</sub></i> = 1 − <i>T f<sub>b</sub></i> = 0.72 (for a formal derivation see further below and proof in the appendix, local equilibrium condition A). To obtain for the baseline simulation an initial condition where both groups can be satisfied when the local ethnic mix is representative of the overall population distribution, we assumed that groups A and B have equal size. Finally, following most previous work on Schelling-type residential segregation dynamics, agents focus in the residential model on a local environment that represents only a small part of the overall world. We set the radius for the residential neighborhood to<i> r </i>= 1.5, creating local neighborhoods that encompass only 8 neighbors or 0.08% of all cells of the world.
+
+<p></p></dd><dt><b><a name="3.4">3.4</a></b></dt><dd>Starting from a randomly mixed initial population we found that segregation establishes after ~ 300 rounds and then stabilizes. This pattern is prototypical for Schelling-type models of residential segregation. Figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig5">5</a> shows the final distribution of agent-types across space in a prototypical run. After 300 rounds, the average proportion of neighbors of the own type had increased to 67% from an initial 50%. While the average neighborhood composition falls within the acceptable range for both groups, this average does not reflect the actual segregation. After 300 iterations, the proportion of agents for whom the local composition falls outside of the range that is acceptable for both groups has increased to approximately 38% from an initial 29%. Moreover, 86% of the free locations have a local composition that falls outside this range, showing that further moves are likely to increase segregation. 
+       
+       
+<p></p><center>
+<a name="fig5"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./139_files/figure_5.jpg" alt="Figure 5">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 5</b>. State of the neighborhoods after 300 iterations. Initial 50%-50% population mix, 8700 agents, <i>f</i><sub> </sub>= 0.7, <i>M </i>= 0.8 <i>T</i> = 0.4.
+</td></tr></tbody></table>
+</center><p>
+</p><p></p></dd><dt><b><a name="3.5">3.5</a></b></dt><dd>Segregation increases in this condition beyond the initial random mix because initially not every local residential neighborhood is a perfectly representative sample of the population mix. Local residential neighborhoods contain only up to 8 out of the 8700 agents of the population. Thus, there are initially a number of agents for whom the proportion of group A members in their local residential neighborhood does not fall within the acceptable range. We approximated the probability that at a randomly chosen location the initial proportion of group A members falls outside of the acceptable interval [0.28, 0.72] with the cumulative density function of the binomial distribution. This yields a probability of approximately 0.29. This suggests that the number of agents that are not satisfied with their initial residential neighborhood is large enough to set off a cascade of consecutive migrations in which local neighborhoods then develop gradually higher concentrations of either A or B agents. 
+
+<p></p></dd><dt><b><a name="3.6">3.6</a></b></dt><dd>Next we investigated whether a similar segregation dynamic would arise from the school segregation model without distance preferences (<i>α</i>= 1) under otherwise identical conditions. At the outset, every household from a school-neighborhood assigned its one child to the neighborhood's school so that schools mirrored the randomly mixed initial ethnic composition of neighborhoods. We found that there was virtually no change in the ethnic composition over time. Schools remain ethnically integrated throughout. 
+
+<p></p></dd><dt><b><a name="3.7">3.7</a></b></dt><dd>The residential dynamic differs from the school-choice dynamic in this initial example because schools constitute much larger 'local neighborhoods' than the residential neighborhoods with radius <i>r </i>= 1.5 of the residential model. The size of schools varies between about 100 and 800 "slots". For this size, obtaining local concentrations of group A members outside the range that satisfies both groups is virtually impossible from a random start. Approximation of the probability yields an approximate probability below 10<sup>-5</sup> for this event. 
+
+<p></p></dd><dt><b><a name="3.8">3.8</a></b></dt><dd>Model dynamics differ between residential and school model, because schools recruit their initial population from a neighborhood much larger than the local residential neighborhoods. School neighborhoods are more representative of the overall population mix and match thus – in the baseline condition – the ethnic preferences of all parents in the population. Laurie and Jaggi (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#laurie2003">2003</a>) reported a similar result in their analysis of the effects of the size of agents' local neighborhoods in their residential Schelling model. But their work also pointed to an interesting interplay between the effects of neighborhood size and the restrictiveness of ethnic preferences. The authors found that a larger neighborhood size increases segregation when agents' satisfaction threshold was relatively low, but a larger neighborhood size could increase segregation when agents had more demanding ethnic preferences. The larger the neighborhood size, the more the local composition is a representative sample of the overall population. Larger neighborhoods thus temper segregation when the overall population distribution would satisfy agents also locally, but they foster segregation otherwise. 
+
+<p></p></dd><dt><b><a name="3.9">3.9</a></b></dt><dd>To assess whether the interplay between ethnic preferences, population composition and neighborhood size can explain the differences that we found between the residential model and the school model without distance preferences, we conducted a simulation experiment in which we varied both the overall population composition and neighborhood size, leaving ethnic preferences unchanged relative to the previous experiment (<i>f </i>= 0.7, <i>M </i>= 0.8, <i>T </i>= 0.4). Before presenting results of the experiment we will, in the following, first present a more general analysis of the conditions under which an integrated local ethnic composition for both groups can be expected to be stable when agents are indifferent with regard to the distance from a school. This analysis serves to explain the selection of conditions that we compared in the subsequent simulation experiment.
+
+<h4> Conditions for stable ethnic integration without distance preferences</h4>
+<p></p></dd><dt><b><a name="3.10">3.10</a></b></dt><dd>In the subsequent experiment, we varied both the ethnic composition of the population and the neighborhood size in the residential model. The key idea is that the residential dynamic should become more similar to the school choice dynamic when the size of residential neighborhoods becomes larger. To assess this, we distinguish three different population compositions representing conditions where, respectively, a) the representative local mix satisfies well agents of both groups, b) representative local compositions can still satisfy both groups but small local deviations from the overall ethnic composition suffice to render at least one group dissatisfied, and c) a representative local composition dissatisfies at least one group.
+
+<p></p></dd><dt><b><a name="3.11">3.11</a></b></dt><dd>To operationalize the three different compositions, we first analyzed under which conditions members from both groups obtain at a certain location a utility that exceeds their satisfaction threshold <i>T</i>. If this happens, no agent will leave the location. For simplicity, we assumed that both groups hold the same satisfaction threshold and we impose the plausible restriction that being in the local minority is suboptimal for both groups (1-<i>f<sub>b</sub></i> ≤ 0.5 and <i>f<sub>a </sub></i>≥ 0.5). Furthermore, we neglected the actual size <i>p</i> of the local unit and considered only the local proportions <i>p<sub>a</sub></i><sub> </sub>and <i>p<sub>b</sub></i> of members of group A and B, respectively. Finally, empty slots are neglected such that <i>p<sub>a</sub></i> = 1- <i>p<sub>b</sub></i>. 
+
+<p></p></dd><dt><b><a name="3.12">3.12</a></b></dt><dd>Intuitively, figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig4">4</a> indicates that simultaneous satisfaction of both groups is only possible when the satisfaction threshold (<i>T</i>) falls below the utility level that agents obtain at the proportion <i>p<sub>a,x</sub></i><sub> </sub> where both groups are equally happy with the local mix. For any other local composition either group A or group B obtains a lower utility level. More technically, <i>p<sub>a,x</sub></i><sub> </sub>is the proportion of members of group A at which the left branch of the utility function of group A intersects with the right branch of the utility function of group B, where the latter utility function is expressed as a function of the out-group proportion <i>p<sub>a</sub></i> = 1- <i>p<sub>b</sub></i>. Mathematically, the satisfaction threshold <i>T</i> can only be below the utility obtained at this intersection point when<sup><a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fn2">[2]</a></sup> <i>T</i> ≤ 1/(<i>f<sub>a</sub></i>+<i>f<sub>b</sub></i>). 
+
+<p></p></dd><dt><b><a name="3.13">3.13</a></b></dt><dd>Our analysis of the conditions for local integration confirms that the preference parameters that we used in the baseline experiment allow for integrated compositions. With <i>f<sub>a</sub></i> = <i>f<sub>b</sub></i> = 0.7, we find that <i>T </i>= 0.4 ≤ 1/(<i>f<sub>a</sub></i>+<i>f<sub>b</sub></i>) ≅ 0.714. Further analysis yields the lower and upper boundaries <i>p<sub>a,min</sub></i> and <i>p<sub>a,max</sub></i>, respectively, of the interval within which utility exceeds <i>T</i> for both groups. These boundaries are obtained from equation (1) as <i>p<sub>a,min</sub></i> = <i>f<sub>a</sub></i> <i>T </i>and <i>p<sub>a,max</sub></i> = 1 – <i>T f<sub>b</sub></i>. For the regime in which both groups should be satisfied with representative compositions, we thus need to choose a population composition between <i>p<sub>a,min</sub></i> = <i>f<sub>a</sub></i> <i>T = </i>0.7 * 0.4 = 28%<i> </i>group A and <i>p<sub>a,max</sub></i> = 1 – <i>T f<sub>b</sub></i> = 1-0.28 = 72% group A. This leads us to adopt the following three population distribution regimes for the experiment. An "integration regime" is imposed with the even ethnic distribution 50-50, a "precarious integration regime" is generated with a distribution in which group A is the majority group in a 70-30 mix and, finally, we impose a "segregation regime" with an ethnic distribution 90-10 in favor of group A. Notice that only with the "segregation regime" at least one group (B) would always be dissatisfied with a local distribution representative of the overall population.
+
+<p></p></dd><dt><b><a name="3.14">3.14</a></b></dt><dd>To be sure, the conditions identified above are neither sufficient nor necessary for obtaining an equilibrium for the dynamics of either model. The condition <i>T</i> ≤ 1/(<i>f<sub>a</sub></i> + <i>f<sub>b</sub></i>) is not sufficient to guarantee system stability because local compositions may differ from the global population mix, as we have seen in the baseline simulation of the residential model. The condition is also not necessary for a stable outcome, because fully segregated outcomes can also be stable equilibria of the system as long as <i>T</i> ≤ <i>M</i> for both groups. Nevertheless, we can expect that an integrated initial distribution is more robust to the extent that the overall composition falls more into the interior of the interval [<i>p<sub>a,min</sub></i>, <i>p<sub>a,max</sub></i>] and that local neighborhoods in the residential model are larger. This is what we will explore next.
+
+
+<h4> Joint effects of population composition and residential neighborhood size</h4>
+<p></p></dd><dt><b><a name="3.15">3.15</a></b></dt><dd>In the next experiment, we varied the radius of the local residential neighborhoods in three steps, from <i>r</i> = 1.5 over <i>r</i> = 5 to <i>r</i> = 11. These steps generate neighborhoods that, respectively, comprise 8, 80 and 376 locations (0.08%, 0.8% and 3.76% of all locations, respectively). For <i>r </i>= 11 neighborhood size is approximately equal to school sizes, which range between about 100 and 800. For each radius condition, we varied the ethnic composition of the overall population, changing across the integration regime (50-50), the precarious integration regime (70-30) and the segregation regime (90-10). All other parameters remained equal to those we used in the baseline experiment (<i>N </i>= 8700, <i>f<sub>a </sub></i>= <i>f<sub>b </sub></i>= 0.7, <i>M<sub>a </sub></i>= <i>M<sub>b </sub></i>= 0.8, <i>T<sub>a </sub>= T<sub>b </sub></i>= 0.4 and <i>α </i>= 1).
+
+<p></p></dd><dt><b><a name="3.16">3.16</a></b></dt><dd>Figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig6">6</a> presents results of the experiment for the residential model. The figure shows for all 9 conditions the change of three segregation indices: the school-neighborhood index, the variable neighborhood index, and the dissimiliarity index based on local neighbourhoods   with radius <i>r</i> = 1.5. For reliability, segregation indices are averaged across 100 independent replications per condition. We find the variance of the indices across the independent replications to be in the order of 0.005, which is indistinguishable on the displayed plots, this being the reason to display only the means.
+
+<p></p><center>
+<a name="fig6"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./139_files/Figure 6.jpg" width="571" height="569" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 6</b>. Segregation indices for residential model for three different radius values: <i>r</i> = 1.5, 5, 11 and for three different ethnic compositions: 50-50, 70-30, 90-10. The blue line is the variable neighborhood index, the green line is the dissimilarity index based on local neighborhoods with radius r=1.5 and the red line is the school segregation index. (<i> N </i>= 8700, <i>f<sub>a </sub></i>= <i>f<sub>b </sub></i>= 0.7, <i>M<sub>a </sub></i>= <i>M<sub>b </sub></i>= 0.8 and <i>T<sub>a </sub>= T<sub>b </sub></i>= 0.4).
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="3.17">3.17</a></b></dt><dd>The first row of figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig6">6</a> confirms the expectation that larger neighborhood size suppresses segregation in the 50-50 population composition that we used in the baseline experiment. Increasing the radius from <i>r</i> = 1.5 to <i>r</i> = 5 considerably reduces segregation and at<i> r</i> = 11 the initial randomly mixed condition was stable, like in the school model.
+
+<p></p></dd><dt><b><a name="3.18">3.18</a></b></dt><dd>Results also support that initial integration can be better sustained with larger neighborhoods and an overall population mix that falls more into the interior of the interval [0.28, 0.72]. Except for the smallest neighborhood radius of <i>r </i>= 1.5, segregation increases less in the integration regime (50-50) than in the precarious integration regime (70-30) and most in the segregation regime (90-10). Moreover, for all three regimes the increase of segregation is strongest for the smallest neighborhood radius (<i>r </i>= 1.5). Finally, in the segregation regime representative local neighborhoods cannot be stable and, accordingly, larger neighborhood size has no effect on the stability of the initial integrated state across all three neighborhood sizes. The increase of the school-neighborhood index in particular shows that the segregation occurs increasingly at a macroscopic scale as neighborhoods get bigger. 
+
+<h4> Effects of population composition and distance preferences in the school model</h4>
+<p></p></dd><dt><b><a name="3.19">3.19</a></b></dt><dd>School choices reflect not only parents' preferences for ethnic compositions but also preferences for nearby schools. Our analysis for the residential models has shown that even when neighborhoods are as large as they are in the school model, there is a potential for emergent segregation in the precarious integration regime and the segregation regime. But when parents prefer nearby schools this may curb tendencies towards self-organized school segregation if the initial distribution of households across geographical space is ethnically integrated. Households who are dissatisfied with the ethnic composition of their local school may not find a more attractive school if all schools with a more favorable ethnic composition turn out to be too far away. We wanted to know whether a preference for nearby schools can curb cascades towards segregation in those regimes.  
+
+<p></p></dd><dt><b><a name="3.20">3.20</a></b></dt><dd>In a first experiment, we simulated with the school model the precarious integration condition (population mix 70-30) for which we know that a perfectly integrated outcome can be satisfactory for all agents, but is hard to sustain from a random start. Across different conditions, we gradually changed in steps of 0.2 the weight <i>α</i> that parents put on optimizing ethnic composition relative to minimizing distance. The parameter was varied between <i>α </i>= 0 and <i>α </i>= 1. Figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig7">7</a> shows results based on averages of 100 independent replications per condition. 
+
+<p></p><center>
+<a name="fig7"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./139_files/figure_7.jpg" alt="Figure7">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 7</b>. Left side: Change of school segregation index; Right side (bar charts): Ethnic composition and size of the 25 schools after 300 iterations for illustrative single-run. <i>N </i>= 8700, with a 70-30 ethnic composition (<i>f<sub>a </sub>= f<sub>b </sub>= 0.7</i>, <i>M<sub>a </sub>= M<sub>b </sub>= 0.8,</i> <i>T </i>= 0.4).
+</td></tr></tbody></table>
+</center><p>
+
+
+
+</p><p></p></dd><dt><b><a name="3.21">3.21</a></b></dt><dd>Figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig7">7</a> shows how a preference for nearby schools can suppress the trend towards increasing school segregation that we observed when parents were indifferent towards distance, all other things being equal. The results for <i>α</i> between and including <i>α</i> = 0 and <i>α</i> = 0.5 show that the initial integrated state is preserved. Only when distance minimization is less important to the simulated parents than the ethnic composition, we observe that segregation increases noticeably above its initial level of zero. However, even for <i>α</i> = 0.8, the dissimilarity index for the final state is only about half as large as for the case when parents were assumed to be indifferent to distance (<i>α</i> = 1.0). This effect is also reflected by the number of schools that is ethnically homogenous in the illustrative runs shown in the right column. For the conditions with <i>α</i> ≤ 0.5, both groups are represented at all schools. However, with <i>α</i> = 0.8, four schools end up as "majority only", and with <i>α</i> = 1.0 this number has increased to seven schools. Thus, without a preference for nearby schools, also the school model can generate unintended segregation in the same way as the residential model.
+
+<p></p></dd><dt><b><a name="3.22">3.22</a></b></dt><dd>In the next experiment, we compared the effects of distance preferences across the three regimes of population composition, using the same set of preference parameters for ethnic compositions than before.
+
+<p></p></dd><dt><b><a name="3.23">3.23</a></b></dt><dd>Figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig8">8</a> shows the results for the change of the school segregation index, for the three regimes of the initial population composition. Per regime, we simulated three values for the weight of the preference for nearby schools, <i>α</i> = 1 (only ethnic composition matters), <i>α</i> = 0.5 (equal weight for ethnic composition and distance), and <i>α</i> = 0.2 (mainly distance matters). Results are based on 100 independent replications per condition. 
+
+<p></p><center>
+<a name="fig8"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./139_files/figure_8.jpg" alt="Figure 8">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 8</b>. Change of school segregation index for three different regimes of ethnic compositions and <i>α</i> = 1 (red), <i>α</i> = 0.5 (blue), <i>α</i> = 0.2 (green): 50-50, 70-30, 90-10. <i>N </i>= 8700, <i>f<sub>a </sub></i>= <i>f<sub>b </sub></i>= 0.7, <i>M<sub>a </sub></i>= <i>M<sub>b </sub></i>= 0.8 and <i>T<sub>a </sub>= T<sub>b </sub></i>= 0.4.
+</td></tr></tbody></table>
+</center><p>
+       
+</p><p></p></dd><dt><b><a name="3.24">3.24</a></b></dt><dd>When only ethnic composition matters to parents (<i>α</i> =1), the initially integrated state persists only in the integration regime (50-50), like for the residential model with large neighborhood radius. At this level of <i>α</i>, the increase of segregation observed in the other two regimes is stronger for the segregation regime (90-10) than for the precarious integration regime (70-30). This pattern changes, however, when we put a higher weight on agents' preference for nearby schools. When distance and ethnic composition have an equal weight (<i>α</i> = 0.5), segregation increases above its initial level only in the "segregation-regime", while – as found in the previous experiment - in the "precarious integration regime", agents' preference for nearby schools prevents segregation. Finally, in the condition where agents put more weight on the distance to school than on ethnic composition (<i>α</i> = 0.2), segregation arises in none of the regimes. 
+
+
+<h4> Joint effects of agents' "tolerance" for out-group members and distance preferences</h4>
+<p></p></dd><dt><b><a name="3.25">3.25</a></b></dt><dd>Throughout the experiments presented before, we used the same set of parameters for agents' ethnic preferences and only varied the weight of their preference for nearby schools. A key idea in research based on Schelling's segregation model is that segregation can arise even when agents are quite tolerant of the presence of out-group members in their local environment. We wanted to know to what extent our models can generate this result, and whether a preference for nearby schools dampens effects of increasing intolerance on segregation. For this purpose, we performed for both the residential and the school segregation model a series of simulations varying the optimal fraction of in-group members <i>f</i> for both ethnic groups over the range of possible values, from very tolerant (small <i>f</i> values) to intolerant (large <i>f</i> values). More precisely, the values of <i>f</i> were varied for both groups across all recombinations of (<i>f<sub>a</sub>,f<sub>b</sub></i>) that resulted from the values of <i>f </i>= 0.1, 0.3, 0.5, 0.7, 0.9. For the school model, we compared the effects of variation in <i>f</i> between a condition in which only ethnic composition mattered to agents (<i>α</i> = 1) and one in which both ethnic composition and travelling distance to school had equal importance (<i>α</i> = 0.5).
+
+<p></p></dd><dt><b><a name="3.26">3.26</a></b></dt><dd>The simulations were performed using a 70-30 population composition, with otherwise the same parameter values as used in the previous experiments (<i>N </i>= 8700 agents, <i>M<sub>a </sub>=<sub> </sub>M<sub>b</sub> </i>= 0.8, <i>T</i> = 0.4). For the residential model, the radius was set to <i>r</i> = 1.5. The results of the simulations are presented in figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig9">9</a>, where, subfigures (a) and (b) show results for the residential model with the school-neighborhood index, and the variable neighborhood index, respectively. Subfigures (c) and (d) chart results for the school model with the school segregation index, without (<i>α</i> = 1) and with (<i>α</i> = 0.5) preferences for nearby schools, respectively. For reliability, segregation indices are averaged across 100 independent replications per condition, where each replication was run until segregation stabilized.
+
+
+<p></p><center>
+<a name="fig9"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./139_files/figure_9_part_1_v10.jpg" alt="Figure 9a">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<img src="./139_files/figure_9_part_2_v10.jpg" alt="Figure 9b">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 9</b>. School-neighborhood index (a) variable neighborhood index (b) school segregation index without preference for distance (<i>α</i> = 1) (c) and school segregation index with preference for distance (<i>α</i> = 0.5) (d) for different (<i>f<sub>a</sub></i> - <i>f<sub>b</sub></i>) combinations. All other parameters are equal to the previous experiments.<i> N </i>= 8700, <i>M<sub>a </sub></i>= <i>M<sub> </sub></i>= 0.8 and <i>T<sub>a </sub>= T<sub>b </sub></i>= 0.4. For the residential model, <i>r </i>= 1.5.
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="3.27">3.27</a></b></dt><dd>Intuitively, we expect that segregation increases when agents' tolerance for out-group members decreases. This expectation is broadly consistent with the results presented in figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig9">9</a>, but there are interesting deviations from the expected pattern. For school segregation, we observe in graph (c) that even without a preference for nearby schools values of the school segregation index remain very low (smaller than 0.05) unless minority members find an in-group fraction of <i>f<sub>b</sub></i> = 0.7 or more optimal. This reflects how ethnic preferences affect the probability that in the initial random mix a school is unacceptable for either the majority or the minority group. From equation 1 we can derive that with the threshold of <i>T </i>= 0.4, a representative school (70% A) is acceptable for the majority group A at any value that the parameter <i>f<sub>a</sub></i> can take. However, this is different for the minority group B. From the experiments reported in figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig8">8</a> we know that at <i>f<sub>a</sub></i> = <i>f<sub>b</sub></i> = 0.7 a perfectly representative school composition would just satisfy the minority, but segregation nevertheless unfolds because in some schools the initial minority is slightly smaller, due to random chance. With <i>f<sub>b</sub></i> = 0.5 or smaller this does not yet happen, because minority members are well satisfied with the initial mix, but for <i>f<sub>b</sub></i> = 0.7 or more local dissatisfaction triggers a cascade of movements of minority members out of integrated schools which eventually results in the high levels of school segregation that we find for those conditions. In this region of the parameter space, the value of the school segregation varies between 0.217 (at <i>f<sub>a</sub></i> = <i>f<sub>b</sub></i> = 0.7) and 0.341 (at <i>f<sub>a</sub></i> = 0.7, <i>f<sub>b</sub></i> = 0.9). A comparison of this pattern with the results we obtain for residential segregation at local scale (graph (b), variable neighborhood index) shows that the results are qualitatively similar in that mainly higher <i>f<sub>b</sub></i> increases local residential segregation. At the same time we find that local residential segregation responds more smoothly to changes in agents' preference function than school segregation without preferences for nearby schools does. The reason is that the initial composition of small local neighborhoods varies more around the overall population mix, such that changes in agents' tolerance noticeably affect the probability that in some local regions at least one of the two groups is dissatisfied with the local mix and starts to move out. Residential segregation at the macroscopic scale of school-neighborhoods (graph (a), school-neighborhood index), finally, is largely unresponsive to levels of ethnic tolerance because with an <i>r</i>=1.5 for the utility function, segregation in small homogenous regions is enough to satisfy agents, therefore reducing the probability of forming larger homogenous regions. Only when both groups have very demanding preferences (<i>f</i> &gt; 0.7), a slight tendency towards the formation of larger segregated regions is noticeable (school-neighborhood index &gt; 0.1).
+
+<p></p></dd><dt><b><a name="3.28">3.28</a></b></dt><dd>Subfigure (d) shows how a preference for nearby schools suppresses effects of agents' tolerance for out-groups and prevents segregation. With a weight of 1-<i>α</i> = 0.5 of the distance between home and school, the effects of <i>f</i> all but disappear. For all combinations of <i>f<sub>a</sub></i> and <i>f<sub>b</sub></i> segregation levels remain very low, close to the initial level of segregation obtained for a random distribution of agents. This is particularly remarkable for the condition of <i>f<sub>a</sub></i> = <i>f<sub>b</sub></i> = 0.9, in which a statistically representative school is no longer acceptable for members of the minority. (Figure <a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#fig9">9</a> school segregation index <i>α</i> =0.5.) 
+
+
+</dd></dl><h3><img align="Bottom" src="./139_files/bullet.gif" width="23" height="23" alt="* "> Conclusions</h3><dl compact="">
+
+<dt><b><a name="4.1">4.1</a></b></dt><dd>We have developed in this paper a stylized model for school choice dynamics that builds on the same principles as the well known Schelling model of residential segregation. Our analysis of the differences between the Schelling type residential segregation model and the school model showed that integrated distributions that are in line with agents' preferences are much more robust in the school model when the size of residential neighborhoods is small relative to the size of the catchment areas of schools. At the same time, when the overall ethnic composition of the population is relatively unfavorable compared to individual ethnic preferences, preference dynamics that generate high levels of unintended segregation unfold in both models under comparable conditions. For the school choice model, these results reflect Schelling's (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#schelling1978">1978</a>) analysis of the tipping process of bounded neighborhoods. Bounded neighborhoods can be seen as similar to schools in our school model. In this sense, the results we obtained in the first part of the paper mainly serve to demonstrate that our school model aligns with results that have previously been obtained for residential segregation, as long as we neglect parents' preferences for nearby schools. 
+
+<p></p></dd><dt><b><a name="4.2">4.2</a></b></dt><dd>An important difference between residential segregation dynamics and school segregation dynamics is that parents choose a school within some distance from their home, while not changing their residential location. The distance of schools from home can thus matter for parents' choices and be a factor that tempers segregation dynamics. This was illustrated by the results that we obtained when we introduced a preference for nearby schools in addition to the ethnic preferences of the Schelling model. We found that this curbed segregation in an initially integrated population that would have segregated when parents' choices had only been driven by ethnic preferences. Similarly, when we varied the population composition and agents' tolerance for outgroup members, we found that integrated distributions were preserved under a much broader range of conditions than in the absence of a preference for nearby schools. An interesting question for future research that follows from this is whether and to what extent the high levels of school segregation observed in many Western countries are mainly due to residential segregation rather than to 'Schelling-type' preference dynamics.	
+
+<p></p></dd><dt><b><a name="4.3">4.3</a></b></dt><dd>We deliberately used highly stylized models to obtain a clear comparison with the well-known Schelling dynamic. Due to this, there are number of limitations of our work that point to directions for future research. To begin with, we neglected heterogeneity in agents' preferences within ethnic groups, unlike in Schelling's (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#schelling1978">1978</a>) analysis of bounded neighborhoods where the distribution of agents' tolerance threshold is the main parameter of interest. Our homogeneity assumption may lead to an overassessement of the stability of ethnic integration, because, as Schelling's analysis suggests, even if a local ethnic mix satisfies the average individual of a group, there can still be individual members with more demanding preferences who leave the neighborhood or school and thus trigger a cascade towards segregation. Moreover, the deterministic choice function of our model does not account for the possibility of random heterogeneity in agents' preferences. To address this, future work should integrate random utility assumptions similar to those used by Zhang (<a href="http://jasss.soc.surrey.ac.uk/17/1/5.html#zhang2004a">2004a</a>) into our school segregation model.
+
+<p></p></dd><dt><b><a name="4.4">4.4</a></b></dt><dd>The modelling work presented here is just the first step in a broader project. In future research, we aim to further elaborate our school segregation model with the goal to make it applicable for modelling the dynamics of ethnic school compositions that actually can be observed empirically for primary schools in the Netherlands. This requires to further extend the model to incorporate a broader spectrum of preference arguments that parents are known to take into account from empirical research, such as preferences for schools with perceived high educational achievements or specific religious denominations. It also requires to link available empirical information on the corresponding school characteristics as well as on residential ethnic compositions, and geographical locations of schools and school neighborhoods to the model. We believe that integrating empirical information with theoretical models of segregation is a promising direction to assess competing explanations of school segregation (e.g. a preference based vs. a residential segregation based account) and to explore theoretically what the effects of policies could be that have been proposed to counter school segregation.
+
+</dd></dl><hr><h3><img align="Bottom" src="./139_files/bullet.gif" width="23" height="23" alt="* "> Appendix
+</h3><dl compact=""><dt></dt><dd>
+
+</dd><dt><b><a name="A.1">A.1</a></b></dt><dd>We deduce analytically the conditions under which given f and M for both groups a local composition is satisfactory for both groups. We assume throughout that agents are indifferent with regard to distance, i.e. α =1.
+
+<p></p></dd><dt><b><a name="A.2">A.2</a></b></dt><dd>We write equation (1) separately for each group. For group A this yields:
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq5 f.jpg" width="295" height="89" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(5)
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="A.3">A.3</a></b></dt><dd>For group B we obtain:
+
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq6 f.jpg" width="295" height="85" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(6)
+</td></tr></tbody></table>
+</center><p>
+
+
+</p><p></p></dd><dt><b><a name="A.4">A.4</a></b></dt><dd>Also we impose that <i>p</i><sub><i>a</i></sub> + <i>p</i><sub><i>b</i></sub> = 1 and assume that both groups are satisfied. In the following we analyze, under which conditions mutual satisfaction can hold. We also call mutual satisfaction the condition for "local equilibrium".
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq7 f.jpg" width="150" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(7)
+</td></tr></tbody></table>
+</center><p>
+</p><p></p></dd><dt><b><a name="A.5">A.5</a></b></dt><dd>We re-write equation (6) as follows:
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq8 f.jpg" width="299" height="93" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(8)
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="A.6">A.6</a></b></dt><dd>We distinguish further four different global outcome possibilities for equation (3) and equation (6).
+
+<ol type="A"><li> For
+ <i>p<sub>a</sub></i><sub> </sub> ≤ <i>f<sub>a</sub></i> and (1-<i>p<sub>a</sub></i>) ≤ <i>f<sub>b</sub></i>, we obtain:
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq9 f.jpg" width="305" height="63" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(9)
+</td></tr></tbody></table>
+</center><p>
+Using the condition that both groups are satisfied for the given proportions of ethnic groups, we obtain
+</p><p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq10 f.jpg" width="400" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(10)
+</td></tr></tbody></table>
+</center><p>
+The conditions implied by equations (9) and (10) can be summarized as follows for the parameters <i>f<sub>a</sub></i> and <i>f<sub>b</sub></i>:
+</p><p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq11 f.jpg" width="150" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(11)
+</td></tr></tbody></table>
+</center><p>
+Out of this we obtain as follows a condition for satisfaction of both groups:
+</p><p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Betweenequation11and12.jpg" width="296" height="109" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+</td></tr></tbody></table>
+</center><p>
+leading to the following condition for the local proportions <i>p<sub>a</sub></i><sub> </sub>of members of group A
+</p><p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Equation12.jpg" width="350" alt="Equation"></td>
+<td align="Right" valign="Middle" width="40">
+(12)
+</td></tr></tbody></table>
+</center><p>
+
+</p></li><li>For p<sub>a </sub> ≤ f<sub>a</sub> and (1-p<sub>a</sub>) &gt; f<sub>b</sub>, we obtain:
+
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq13 f.jpg" width="296" height="68" alt="Equation"></td>
+<td align="Right" valign="Middle" width="40">
+(13)
+</td></tr></tbody></table>
+</center><p>
+
+Out of equation (13) together with the initial conditions for the proportion of population of group A and group B, we write, in a similar manner as for case A, the local equilibrium condition as follows:
+</p><p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/betweenEq13andEq14f.jpg" width="340" height="50" alt="Equation"></td>
+<td align="Right" valign="Middle" width="40">
+
+</td></tr></tbody></table>
+</center><p>
+</p></li><li> p<sub>a &gt; </sub>f<sub>a</sub> and (1-p<sub>a</sub>) &gt; f<sub>b</sub>, for these we have the following:
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq14 f.jpg" width="355" height="72" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(14)
+</td></tr></tbody></table>
+</center><p>
+
+Out of this we write the equilibrium condition as follows:
+</p><p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq15f.jpg" width="354" height="94" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(15)
+</td></tr></tbody></table>
+</center><p>
+
+</p></li><li> p<sub>a &gt; </sub>f<sub>a</sub> and (1-p<sub>a</sub>) &gt; f<sub>b</sub>, implying that 1&gt;(f<sub>a </sub>+ f<sub>b</sub>)for these we have the following:
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq16 f.jpg" width="353" height="74" alt="Equation"></td>
+<td align="Right" valign="Middle" width="40">
+(16)
+</td></tr></tbody></table>
+</center><p>
+
+Out of this we can write the equilibrium condition as follows:
+</p><p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq 17 f.jpg" width="421" height="97" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(17)
+</td></tr></tbody></table>
+</center><p>
+</p></li></ol>
+	<p></p></dd><dt><b><a name="A.7">A.7</a></b></dt><dd>We can thus state that the system is in equilibrium if it obeys any of the conditions given in Eq. 12, Eq.14, Eq.16, or Eq.18 for all the schools or neighborhoods at the same time.
+
+	<p></p></dd><dt><b><a name="A.8">A.8</a></b></dt><dd>We can assume that f<sub>a</sub> = f<sub>b</sub>; M<sub>a</sub> = M<sub>b</sub>. The equilibrium conditions can also be used to extract further conditions for the parameters f, with respect to the threshold T.
+
+	
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./139_files/Eq18 f.jpg" width="136" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(18)
+</td></tr></tbody></table>
+</center><p>
+
+	The parameter f represents the percent of own color population. We can safely assume that f ≥ 1/2 (nobody likes to be in a minority), so condition D is usually invalid.
+
+
+</p></dd></dl><hr><h3><img align="Bottom" src="./139_files/bullet.gif" width="23" height="23" alt="* "> Notes
+</h3><dl compact=""><dt></dt><dd>
+<a name="fn1"><sup>1</sup></a> The C++ code of the model can found at <a href="http://www.openabm.org/model/3842/version/1/view">http://www.openabm.org/model/3842/version/1/view</a>.<p>
+<a name="fn2"><sup>2</sup></a> Formal proofs for the theorems presented in this section can be found in the appendix.</p><p>
+
+</p></dd></dl><hr><h3><img align="Bottom" src="./139_files/bullet.gif" width="23" height="23" alt="* "> References</h3><dl compact=""><dt></dt><dd>
+
+<a name="axtell1996">AXTELL</a>, R., Axelrod R., J.M. Epstein and M.D. Cohen (1996). "Aligning Simulation Models: A Case Study and Results.", <i>Computational and Mathematical Organization Theory</i> 1(2), 123–141.<p>
+<a name="baker2011">BAKER</a>, J., Denessen, E., Peeters, D., and Walraven, G. (2011). "International Perspectives on countering school segregation." Antwerpen-Apeldoorn, Uitgeverij Garant, ISBN 978 90 4412 6945. </p><p>
+<a name="bendor2003">BENDOR</a>, J., Diermeier, A., and M. Ting. 2003. "A Behavioral Model of Voter Turnout." <i>American Political Science Review</i> 97: 261–280. </p><p>
+<a name="bell2009">BELL</a>, C. (2009). "Geography in Parental Choice." <i>American Journal of Education </i>115, 493–521.</p><p>
+<a name="bovens2006">BOVENS</a>, M. and Trappenburg, M. (2006). "Segregation through Anti-Discrimination: How the Netherlands Got Divided Again." Chapter 4 in: Verweij, M. and Thompson, M. (eds.). <i>Clumsy Solutions for a Complex World. Governance, Politics and Plural Perceptions.</i> Basingstoke (CY): Palgrave Macmillan.</p><p>
+<a name="cbs2007">CBS</a> [Statistics Netherlands] (2007). <i>Jaarboek onderwijs in cijfers 2008</i> [In Dutch, Annual statistical school report 2008]. Voorburg/Heerlen: Centraal Bureau voor de Statistiek.</p><p>
+<a name="clark2008">CLARK</a>, W. A. V. and Fossett, M. (2008). "Understanding the social context of the Schelling segregation model." <i>Proceedings of the National Academy of Sciences of the United States of America</i> 105(11),  4109–4114.</p><p>
+<a name="coenders2004">COENDERS</a>, M., Lubbers, M., and Scheepers, P. (2004). "Weerstand tegen scholen met allochtone kinderen. De etnische tolerantie van hoger opgeleiden op de proef gesteld" [Resistance against schools with non-western minority pupils]. <i>Mens en Maatschappij</i> 79, 124–147.</p><p>
+<a name="denessen2005">DENESSEN</a>, E., Driessen, G. and Sleegers, P. (2005) "Segregation by choice? A study of group-specific reasons for school choice." <i>Journal of Education Policy</i>, 20(3), 347–368.</p><p>
+<a name="flache2001">FLACHE</a>, A., and Hegselmann, R. (2001). "Do Irregular Grids make a Difference? Relaxing the Spatial Regularity Assumption in Cellular Models of Social Dynamics." <i>Journal of Artificial Societies and Social Simulation</i> 4. <a href="http://jasss.soc.surrey.ac.uk/4/4/6.html">http://jasss.soc.surrey.ac.uk/4/4/6.html</a></p><p>
+<a name="fossett2006a">FOSSETT</a>, M. (2006a). "Ethnic preferences, social distance dynamics, and residential segregation: Theoretical explorations using simulation analysis." <i>Journal of Mathematical Sociology</i> 30, 185–274.</p><p>
+<a name="fossett2006b">FOSSETT</a>, M. (2006b) "Including Preference and Social Distance Dynamics in Multi-Factor Theories of Segregation" <i>Journal of Mathematical Sociology</i> 30, 3–4, 289–298.</p><p>
+<a name="fossett2005">FOSSETT</a>, M., and Warren, W. (2005) "Overlooked Implications of Ethnic Preferences for Residential Segregation in Agent-based models" <i>Urban Studies</i> 42–1893.</p><p>
+<a name="grauwin2009">GRAUWIN</a>, S., Bertin, E., Lemoy, R., and Jensen, P. (2009). "Competition between collective and individual dynamics." <i>Proceedings of the National Academy of Sciences of the United States of America </i>106, 20622–20626.</p><p>
+<a name="hatna2012">HATNA</a>, E. and Benenson, I. (2012). "The Schelling Model of Ethnic Residential Dynamics:  Beyond the Integrated - Segregated Dichotomy of Patterns." <i>Journal of Artificial Societies and Social Simulation</i> 15 (1) 6 <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html">http://jasss.soc.surrey.ac.uk/15/1/6.html</a>.</p><p>
+<a name="hegselmann1998">HEGSELMANN</a>, R. and Flache, A. (1998). "Understanding complex social dynamics: a plea for cellular automata based modeling". <i>Journal of Artificial Societies and Social Simulation</i> 1. <a href="http://www.soc.surrey.ac.uk/JASSS/1/3/1.html">http://www.soc.surrey.ac.uk/JASSS/1/3/1.html</a>.</p><p>
+<a name="hegselmann2000">HEGSELMANN</a>, R, A. Flache, V. Mö ller, (2000). "Cellular Automata Models as Modelling Tool". pp. 151–178 in: Suleiman R., K.G. Troitzsch, N. Gilbert (eds.). <i>Tools and Techniques in for Social Science Simulation</i>. Heidelberg: Physica.</p><p>
+<a name="karsten2003">KARSTEN</a>, S., Ledoux,G., Roeleveld, J., Felix, C. and Elshof, D. (2003). "School choice and ethnic segregation." <i>Educational Policy</i> 17, 452–477.</p><p>
+<a name="karsten2006">KARSTEN</a>, S., Felix, C. , Ledoux, G., Meijnen, W., Roeleveld, J. and Van Schooten, E. (2006). "Choosing segregation or integration? The extent and effects of ethnic segregation in Dutch cities." <i>Education and Urban Society</i> 38, 228–247.</p><p>
+<a name="kristen2008">KRISTEN</a>, C. (2008). "Primary School Choice and Ethnic School Segregation in German Elementary Schools." <i> European Sociological Review</i> 24, 495–510.</p><p>
+<a name="laurie2003">LAURIE</a>, A.J. and Jaggi, N.K. (2003). "The role of 'vision' in neighborhood racial segregation: A variant of the Schelling segregation model." <i>Urban Studies</i> 40, 2687–2704.</p><p>
+<a name="logan2008">LOGAN</a>, J., Oakley, D.  and Stowell, J. (2008). "School Segregation in Metropolitan Regions, 1970–2000: The Impacts of Policy Choices on Public Education." <i>American Journal of Sociology</i> 113, 1611–1644.</p><p>
+<a name="macy2002">MACY</a>,  M. W. and Flache, A. (2002). "Learning Dynamics in Social Dilemmas". <i>Proceedings of the National Academy of Sciences U.S.A. </i> 99(10), 7229–36.</p><p>
+<a name="macywiller2002">MACY</a>, M. W. and Willer, R. (2002). "From Factors to Actors: Computational Sociology and Agent-Based Modeling" <i>Annual Review of Sociology</i> , 28, 143–166.</p><p>
+</p><p>
+<a name="macy2006">MACY</a>, M. W. and van de Rijt, A. (2006). "Ethnic preferences and residential segregation: Theoretical explorations beyond Detroit." <i>Journal of Mathematical Sociology</i> 30, 275–288.</p><p>
+<a name="massey1988">MASSEY</a>, D.S. and Denton N.A. (1988). "The Dimensions of Residential Segregation" <i>Social Forces</i>, 67, 281–315.</p><p>
+<a name="moody2001">MOODY</a>, J. (2001). "Race, school integration and friendship segregation in America." <i>American Journal of Sociolog</i>y 107, 679–716.</p><p>
+<a name="nikolai2009">NIKOLAI</a>, C. and Madey, G. (2009). "Tools of the Trade: A Survey of Various Agent Based Modeling Platforms." <i>Journal of Artificial Societies and Social Simulation</i> 12(2)2 <a href="http://jasss.soc.surrey.ac.uk/12/2/2.html">http://jasss.soc.surrey.ac.uk/12/2/2.html</a>.</p><p>
+<a name="rouchier2008">ROUCHIER</a>, J., Cioffi-Revilla, C., Polhill, J.G. and Takadama, K. (2008). "Progress in Model-To-Model Analysis." <i>Journal of Artificial Societies and Social Simulation</i> 11(2)8 <a href="http://jasss.soc.surrey.ac.uk/11/2/8.html">http://jasss.soc.surrey.ac.uk/11/2/8.html</a>.</p><p>
+<a name="saporito2003">SAPORITO</a>, S. (2003). "Private choices, public consequences: magnet school choice and segregation by race and poverty". <i>Social Problems</i> 50:181–203.</p><p>
+<a name="schelling1969">SCHELLING</a>, T.C., (1969). "Models of segregation." <i>American Economic Review</i> 59:488–493.</p><p>
+<a name="schelling1971">SCHELLING</a>, T.C., (1971). "Dynamic models of segregation". <i>Journal of Mathematical Sociology</i> 1:143–186.</p><p>
+<a name="schelling1978">SCHELLING</a>, T. C. (1978) <i>Micromotives and Macrobehavior</i>. New York, WW Norton.</p><p>
+<a name="simon1956">SIMON</a>, H.A., (1956) "Rational choice and the structure of the environment". <i>Psychological Review</i> 63(2), 129–138.</p><p>
+<a name="sohoni2009">SOHONI</a>, D. and Saporito, S. (2009). "Mapping School Segregation: Using GIS to Explore Racial Segregation between Schools and Their Corresponding Attendance Areas." <i>American Journal of Education</i> 115, 569–600.</p><p>
+<a name="stauffer2007">STAUFFER</a>, D. and Solomon, S. (2007). "Ising, Schelling and self-organising segregation." <i>European Physical Journal B </i>57, 473–479.</p><p>
+<a name="van2009">VAN HOUTTE</a>, M. and Stevens, P. A. J. (2009). "School Ethnic Composition and Students' Integration Outside and Inside Schools in Belgium." <i>Sociology of Education</i> 82:217–239.</p><p>
+<a name="vinkovic2006">VINKOVIC</a>, D. and Kirman, A. (2006). "A physical analogue of the Schelling model." <i>Proceedings of the National Academy of Sciences of the United States of America</i> 103, 19261–19265.</p><p>
+<a name="wilensky2006">WILENSKY</a>, U. (2006). NetLogo Voronoi model. <a href="http://ccl.northwestern.edu/netlogo/models/Voronoi">http://ccl.northwestern.edu/netlogo/models/Voronoi</a>. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston.</p><p>
+<a name="zhang2004a">ZHANG</a>, J. (2004a). "A Dynamic Model of Residential Segregation." <i>Journal of Mathematical Sociology</i>,<i>28</i>, 147–170.</p><p>
+<a name="zhang2004b">ZHANG</a>, J. (2004b). "Residential Segregation in an All-Integrationist World." <i>Journal of Economic Behavior and Organization</i>, <i>54</i>, 533–550.</p><p>
+
+</p></dd></dl>
+    </div> <!-- article -->
+</div> <!-- content -->
+<div class="footer" id="footer">
+	<img src="./139_files/line-rain.gif" width="100%" height="4" alt="----">
+	<p>
+	| <a href="http://jasss.soc.surrey.ac.uk/JASSS.html">JASSS Home</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/current.html">Current issue</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/admin/info.html">Information</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/admin/search.html">Search</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/admin/notices.html">Notices</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/admin/archive.html">Back issues</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/admin/comments.html">Comments</a>
+	</p>
+	<p style="text-align: left;">
+	© <a href="http://jasss.soc.surrey.ac.uk/admin/copyright.html">Copyright JASSS</a>
+	</p>
+</div>
+
+
+
+
+
+
+</body></html>

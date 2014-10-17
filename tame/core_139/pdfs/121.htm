@@ -1,0 +1,895 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0041)http://jasss.soc.surrey.ac.uk/15/1/6.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+
+<meta name="DC.Title" content="The Schelling Model of Ethnic Residential Dynamics:  Beyond the Integrated - Segregated Dichotomy of Patterns"> 
+<meta name="DC.Creator" content="Erez Hatna and Itzhak Benenson"> 
+<meta name="DC.Creator.Address" content="erezh51@gmail.com"> 
+<meta name="DC.Subject" content="Schelling Model, Ethnic Segregation, Minority-Majority Relations"> 
+<meta name="DC.Description" content="The Schelling model of segregation is an agent-based model that illustrates how individual tendencies regarding neighbors can lead to segregation. The model is especially useful for the study of residential segregation of ethnic groups where agents represent householders who relocate in the city.  In the model, each agent belongs to one of two groups and aims to reside within a neighborhood where the fraction of &#39;friends&#39; is sufficiently high: above a predefined tolerance threshold value F. It is known that depending on F, for groups of equal size, Schelling&#39;s residential pattern converges to either complete integration (a random-like pattern) or segregation. 
+The study of high-resolution ethnic residential patterns of Israeli cities reveals that reality is more complicated than this simple integration-segregation dichotomy: some neighborhoods are ethnically homogeneous while others are populated by both groups in varying ratios. In this study, we explore whether the Schelling model can reproduce such patterns. We investigate the model&#39;s dynamics in terms of dependence on group-specific tolerance thresholds and on the ratio of the size of the two groups. We reveal new type of model pattern in which a portion of one group segregates while another portion remains integrated with the second group. We compare the characteristics of these new patterns to the pattern of real cities and discuss the differences."> 
+<meta name="DC.Publisher" content="JASSS"> 
+<meta name="DC.Date" content="2012-01-31"> 
+<meta name="DC.Type" content="Text.Article"> 
+<meta name="DC.Format" content="text/html"> 
+<meta name="DC.Identifier" content="http://jasss.soc.surrey.ac.uk/15/1/6.html"> 
+<meta name="DC.Source" content="2010:101:2"> 
+<meta name="DC.Language" content="en"> 
+<meta name="DC.Rights" content="JASSS@soc.surrey.ac.uk">
+<title>The Schelling Model of Ethnic Residential Dynamics</title>
+<link rel="stylesheet" href="./121_files/jasssarticle.css" type="text/css">
+<link rel="stylesheet" href="./121_files/SpryCollapsiblePanel.css" type="text/css">
+<script type="text/javascript" async="" src="./121_files/ga.js"></script><script src="./121_files/SpryCollapsiblePanel.js" type="text/javascript"></script>
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><link rel="stylesheet" type="text/css" href="./121_files/widget007.old.css" media="all"></head> 
+<body>
+<div id="header">
+	<span class="copyright">©<a href="http://jasss.soc.surrey.ac.uk/admin/copyright.html">Copyright JASSS</a></span><p>
+	<a href="http://jasss.soc.surrey.ac.uk/JASSS.html"><img src="./121_files/JASSSMed.GIF" width="189" height="76" border="0" alt="JASSS logo"></a>
+	</p><p><img src="./121_files/bar.gif" width="100%" height="3" alt="----"> 
+        <span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rfr_id=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F15%2F1%2F6.html&amp;rft.genre=article&amp;rft.atitle=The+Schelling+Model+of+Ethnic+Residential+Dynamics%3A++Beyond+the+Integrated+-+Segregated+Dichotomy+of+Patterns&amp;rft.jtitle=Journal+of+Artificial+Societies+and+Social+Simulation&amp;rft.stitle=JASSS&amp;rft.issn=1460-7425&amp;rft.date=2010&amp;rft.volume=15&amp;rft.issue=1&amp;rft.pages=6&amp;rft.aufirst=Erez&amp;rft.aulast=Hatna&amp;rft.au=Benenson%2C+Itzhak"> </span>
+	</p><p class="artauthor"><a href="http://jasss.soc.surrey.ac.uk/15/1/6/hatna.html">Erez Hatna and Itzhak Benenson</a> (2012)
+	</p><p class="arttitle">
+	The Schelling Model of Ethnic Residential Dynamics:  Beyond the Integrated - Segregated Dichotomy of Patterns
+	</p><p class="artlocation"><i>Journal of Artificial Societies and Social Simulation</i> <b>15</b> (1)  6<br>
+	&lt;http://jasss.soc.surrey.ac.uk/15/1/6.html&gt;</p>
+	<p class="artdates">
+	Received: 25-Dec-2010
+	&nbsp;&nbsp;&nbsp;Accepted: 31-Aug-2011
+	&nbsp;&nbsp;&nbsp;Published: 31-Jan-2012
+</p><hr>
+</div>
+<div class="content">
+<!-- draws and processes the tools menu for a JASSS article
+	NG 13 April 2011
+-->
+<script language="javascript" type="text/javascript">
+<!--
+
+function validate() {
+	if (document.tellafriend.name.value.length==0) {
+		alert("Please enter your name");
+		document.tellafriend.name.focus();
+		return false;
+	}
+	if (!echeck(document.tellafriend.email.value)) {
+		alert("Please enter your valid email address");
+		document.tellafriend.email.focus();
+		return false;
+	}
+	if (!echeck(document.tellafriend.fmail1.value)) {
+		alert("Please enter a valid colleague's email address");
+		document.tellafriend.fmail1.focus();
+		return false;
+	}
+	document.tellafriend.submit()
+	return true;
+}
+
+function validate1() {
+	if (!echeck(document.alert_confirm.email.value)) {
+		alert("Please enter your valid email address");
+		return false;
+	}
+	document.alert_confirm.submit()
+	return true;
+}
+
+/**
+ * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+ */
+
+function echeck(str) {
+
+		if ((str==null)||(str=="")){
+				return false
+			}
+
+		var at="@"
+		var dot="."
+		var lat=str.indexOf(at)
+		var lstr=str.length
+		var ldot=str.indexOf(dot)
+		if (str.indexOf(at)==-1){
+		   return false
+		}
+
+		if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+		   return false
+		}
+
+		if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+		    return false
+		}
+
+		 if (str.indexOf(at,(lat+1))!=-1){
+		    return false
+		 }
+
+		 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+		    return false
+		 }
+
+		 if (str.indexOf(dot,(lat+2))==-1){
+		    return false
+		 }
+		
+		 if (str.indexOf(" ")!=-1){
+		    return false
+		 }
+
+ 		 return true					
+	}
+
+function resizeText(multiplier) {
+  if (document.body.style.fontSize == "") {
+    document.body.style.fontSize = "1.0em";
+  }
+  document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (multiplier * 0.2) + "em";
+  return false;
+}
+
+/* implement the show/hide link for the sidebar panel */
+
+function hidePanel() {
+		var panel = document.getElementById('tools');
+        var icon = document.getElementById('toolsicon');
+        if (panel.style.display=="none") {
+        	panel.style.display = "block";
+        	icon.style.display = "none";
+        }
+        else {
+        	panel.style.display = "none";
+        	icon.style.display = "block";
+        }      	
+}
+
+//-->	
+</script>
+
+<div id="toolsicon" style="display: none;">
+			<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#" onclick="hidePanel()">Show<br>tools</a>
+</div>	
+
+<div class="tools" id="tools">
+
+	<div class="menu">
+		
+		<div class="title">
+			<span style="float:right;"><a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#" onclick="hidePanel()" style="font-size:90%">Hide</a></span><br> 
+			<b>Article Tools</b>
+		</div>
+	
+		<div class="content">
+	
+			<div class="panel">
+				<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#" title="Decrease font size" onclick="resizeText(-1)" style="font-size: smaller">Smaller</a>
+				Text
+				<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#" title="Increase font size" onclick="resizeText(1)" style="font-size: larger">Bigger</a>
+			</div>  
+			
+			<!-- see http://www.addthis.com/ -->
+			
+			<script type="text/javascript">
+				var addthis_config = {
+	     		ui_cobrand: "JASSS"
+				}
+			</script>
+			
+			<div class="panel">
+				Bookmark: 
+				<div class="addthis_toolbox addthis_default_style" style="padding:5px;">
+					<a class="addthis_button_email addthis_button_preferred_1 at300b" target="_blank" title="Email" href="http://jasss.soc.surrey.ac.uk/15/1/6.html#"><span class="at16nc at300bs at15nc at15t_email at16t_email"><span class="at_a11y">Share on email</span></span></a>
+  					<a class="addthis_button_print addthis_button_preferred_2 at300b" title="Print" href="http://jasss.soc.surrey.ac.uk/15/1/6.html#"><span class="at16nc at300bs at15nc at15t_print at16t_print"><span class="at_a11y">Share on print</span></span></a>
+  					<a class="addthis_button_gmail addthis_button_preferred_3 at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=gmail&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F15%2F1%2F6.html&title=The%20Schelling%20Model%20of%20Ethnic%20Residential%20Dynamics&ate=AT-unknown/-/-/5441234ee59a016a/8/5321823c76ee32e6&frommenu=1&uid=5321823c76ee32e6&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="Gmail"><span class="at16nc at300bs at15nc at15t_gmail at16t_gmail"><span class="at_a11y">Share on gmail</span></span></a>
+<!--  				<a class="addthis_button_citeulike"></a> -->
+<!-- 				<a class="addthis_button_delicious"></a> -->
+<!-- 				<a class="addthis_button_digg"></a> -->
+				    <a class="addthis_button_facebook at300b" title="Facebook" href="http://jasss.soc.surrey.ac.uk/15/1/6.html#"><span class="at16nc at300bs at15nc at15t_facebook at16t_facebook"><span class="at_a11y">Share on facebook</span></span></a>
+				    <a class="addthis_button_linkedin at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=linkedin&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F15%2F1%2F6.html&title=The%20Schelling%20Model%20of%20Ethnic%20Residential%20Dynamics&ate=AT-unknown/-/-/5441234ee59a016a/2&frommenu=1&uid=5441234e0ced519d&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="LinkedIn"><span class="at16nc at300bs at15nc at15t_linkedin at16t_linkedin"><span class="at_a11y">Share on linkedin</span></span></a>
+				    <a class="addthis_button_reddit at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=reddit&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F15%2F1%2F6.html&title=The%20Schelling%20Model%20of%20Ethnic%20Residential%20Dynamics&ate=AT-unknown/-/-/5441234ee59a016a/3&frommenu=1&uid=5441234eddbc2cc4&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="Reddit"><span class="at16nc at300bs at15nc at15t_reddit at16t_reddit"><span class="at_a11y">Share on reddit</span></span></a>
+				    <a class="addthis_button_researchgate at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=researchgate&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F15%2F1%2F6.html&title=The%20Schelling%20Model%20of%20Ethnic%20Residential%20Dynamics&ate=AT-unknown/-/-/5441234ee59a016a/4&frommenu=1&uid=5441234e2bd6ca6e&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="ResearchGate"><span class=" at300bs at15nc at15t_researchgate"><span class="at_a11y">Share on researchgate</span></span></a>
+				    <a class="addthis_button_stumbleupon at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=stumbleupon&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F15%2F1%2F6.html&title=The%20Schelling%20Model%20of%20Ethnic%20Residential%20Dynamics&ate=AT-unknown/-/-/5441234ee59a016a/5&frommenu=1&uid=5441234e33e9005e&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="StumbleUpon"><span class="at16nc at300bs at15nc at15t_stumbleupon at16t_stumbleupon"><span class="at_a11y">Share on stumbleupon</span></span></a>
+				    <a class="addthis_button_xing at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=xing&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F15%2F1%2F6.html&title=The%20Schelling%20Model%20of%20Ethnic%20Residential%20Dynamics&ate=AT-unknown/-/-/5441234ee59a016a/6&frommenu=1&uid=5441234e568278bf&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="XING"><span class="at16nc at300bs at15nc at15t_xing at16t_xing"><span class="at_a11y">Share on xing</span></span></a>
+				    <a class="addthis_button_twitter at300b" title="Tweet" href="http://jasss.soc.surrey.ac.uk/15/1/6.html#"><span class="at16nc at300bs at15nc at15t_twitter at16t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+				    <a class="addthis_button_baidu at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=baidu&url=http%3A%2F%2Fjasss.soc.surrey.ac.uk%2F15%2F1%2F6.html&title=The%20Schelling%20Model%20of%20Ethnic%20Residential%20Dynamics&ate=AT-unknown/-/-/5441234ee59a016a/7&frommenu=1&uid=5441234ee3bbf68c&ct=1&ui_cobrand=JASSS&pre=https%3A%2F%2Fwww.google.co.uk%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="Baidu"><span class="at16nc at300bs at15nc at15t_baidu at16t_baidu"><span class="at_a11y">Share on baidu</span></span></a>
+				    <a class="addthis_button_orkut"></a>
+				<div class="atclear"></div></div>
+			</div>
+			
+			<script type="text/javascript" src="./121_files/addthis_widget.js"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe id="_atssh585" title="AddThis utility frame" src="./121_files/sh176.htm" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px; left: 0px; top: 0px;"></iframe></div><script type="text/javascript" src="./121_files/core159.js"></script>
+		
+			<div id="CollapsiblePanel1" class="CollapsiblePanel CollapsiblePanelClosed">
+		        <div class="CollapsiblePanelTab"> Export citation</div>       
+		      	<div class="CollapsiblePanelContent" style="display: none;">
+					<ul>
+			   		 	<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=plain">Plain text</a></li>
+			   		 	<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=html">HTML</a></li>
+						<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=ris">Reference Manager</a></li>
+				   		<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=ris">EndNote</a></li>
+			    		<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=ris">ProCite</a></li>
+			   		 	<li><a href="http://jasss.soc.surrey.ac.uk/admin/export_citation.php?format=bibtex">BibTex</a></li>
+		   		 	</ul>
+		         </div>  
+			</div>    
+			<script type="text/javascript"> var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1");</script>
+			
+			
+			<div id="CollapsiblePanel2" class="CollapsiblePanel CollapsiblePanelClosed">
+		        <div class="CollapsiblePanelTab"> Articles with the same author(s)</div>
+		        <div class="CollapsiblePanelContent" style="display: none;">
+	  				<ul> 
+		  				<li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_jasss.php?search=author">From JASSS</a></li>
+					    <li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_google.php?search=author">From Google Scholar</a></li>
+				    </ul>
+	             </div>  
+	 		</div>   
+			<script type="text/javascript"> var CollapsiblePanel2 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel2");</script>
+			
+			<div id="CollapsiblePanel3" class="CollapsiblePanel CollapsiblePanelClosed">
+	        	<div class="CollapsiblePanelTab">Articles with similar keywords</div>
+	          	<div class="CollapsiblePanelContent" style="display: none;">
+	          	<ul>
+				    <li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_jasss.php?search=kw">From JASSS</a></li>
+				    <li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_google.php?search=kw">From Google Scholar</a></li>	
+				 </ul>
+	           </div>  
+	    	</div>    
+			<script type="text/javascript"> var CollapsiblePanel3 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel3");</script>
+			
+			<div id="CollapsiblePanel4" class="CollapsiblePanel CollapsiblePanelClosed">
+	        	<div class="CollapsiblePanelTab"> Articles citing this article</div>
+	        	<div class="CollapsiblePanelContent" style="display: none;">
+	          		<ul>
+					    <li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_jasss.php?search=cite">From JASSS</a></li>
+						<li><a href="http://jasss.soc.surrey.ac.uk/admin/get_similar_google.php?search=cite">From Google Scholar</a></li>
+					</ul>
+	        	</div>  
+	    	</div>  
+			<script type="text/javascript"> var CollapsiblePanel4 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel4");</script>
+			
+			<div id="getPDF" class="panel">
+				<a href="http://jasss.soc.surrey.ac.uk/admin/get_pdf.php">Download this article in PDF format</a>
+	    	</div>  
+			
+			<div id="CollapsiblePanel5" class="CollapsiblePanel CollapsiblePanelClosed">
+	        	<div class="CollapsiblePanelTab">Alert me when this article is cited within JASSS</div>                   			
+         		<div class="CollapsiblePanelContent" style="display: none;">
+					<form name="alert_confirm" action="http://jasss.soc.surrey.ac.uk/admin/alert_confirm.php" onsubmit="return validate1()" method="post">
+						Your email:
+						<input size="20" name="email" maxlength="45">
+						<input type="hidden" name="refurl" value="/15/1/6.html"> 
+						<center> <input onclick="validate1();" type="button" value="Submit"> </center>
+					</form>
+             	</div>  
+	     	</div> 
+			<script type="text/javascript"> var CollapsiblePanel5 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel5");</script>
+			
+			<div id="CollapsiblePanel6" class="CollapsiblePanel CollapsiblePanelClosed">
+	        	<div class="CollapsiblePanelTab">Send a link to this article to a colleague</div>
+				<div class="CollapsiblePanelContent" style="display: none;">
+					<form name="tellafriend" action="http://jasss.soc.surrey.ac.uk/admin/tellafriend.php" onsubmit="return validate()" method="post">
+						Your name:<br>
+						<input size="20" name="name" maxlength="45"><br>
+						Your email:<br>
+						<input size="20" name="email" maxlength="45"><br>
+						Your colleague’s email:<br>
+						<input size="20" name="fmail1" maxlength="50"><br>
+						<input type="hidden" name="refurl" value="/15/1/6.html"> 
+						<center> <input onclick="validate();" type="button" value="Submit"> </center>
+					</form>
+				</div>  
+	    	</div>   
+			<script type="text/javascript"> var CollapsiblePanel6 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel6");</script>
+	
+		</div>	<!-- content -->
+	</div> <!-- menu -->
+</div> <!-- tools -->
+              
+
+
+
+    <div class="article">
+<h3><img src="./121_files/bullet.gif" alt="* ">Abstract</h3>
+<dl><dt></dt><dd>
+The Schelling model of segregation is an agent-based model that illustrates how individual tendencies regarding neighbors can lead to segregation. The model is especially useful for the study of residential segregation of ethnic groups where agents represent householders who relocate in the city.  In the model, each agent belongs to one of two groups and aims to reside within a neighborhood where the fraction of 'friends' is sufficiently high: above a predefined tolerance threshold value <b>F</b>. It is known that depending on <b>F</b>, for groups of equal size, Schelling's residential pattern converges to either complete integration (a random-like pattern) or segregation. 
+The study of high-resolution ethnic residential patterns of Israeli cities reveals that reality is more complicated than this simple integration-segregation dichotomy: some neighborhoods are ethnically homogeneous while others are populated by both groups in varying ratios. In this study, we explore whether the Schelling model can reproduce such patterns. We investigate the model's dynamics in terms of dependence on group-specific tolerance thresholds and on the ratio of the size of the two groups. We reveal new type of model pattern in which a portion of one group segregates while another portion remains integrated with the second group. We compare the characteristics of these new patterns to the pattern of real cities and discuss the differences.
+<p></p></dd><dt><b>Keywords:</b></dt><dd>
+Schelling Model, Ethnic Segregation, Minority-Majority Relations
+</dd></dl><hr noshade="">
+<h3><img align="Bottom" src="./121_files/bullet.gif" width="23" height="23" alt="* "> Introduction
+</h3><dl compact="">
+
+
+
+<dt><b><a name="1.1">1.1</a></b></dt><dd>The Schelling model of segregation (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#schelling1971">Schelling 1971</a>, <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#schelling1978">1978</a>) is one of the earliest agent-based models of social science. The model was introduced by Thomas Schelling to illustrate how individual incentives and individual perceptions of difference can lead collectively to segregation (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#schelling1978">Schelling 1978 </a>p. 148). While the model is indicative of a variety of phenomena where individuals tend to relocate according to the share of similar neighbors, it was found especially useful for the study of residential segregation. 
+
+<h4>The original model 
+</h4><p></p></dd><dt><b><a name="1.2">1.2</a></b></dt><dd>In the Schelling model, agents occupy cells of rectangular space. A cell can be occupied by a single agent only. Agents belong to one of two groups and are able to relocate according to the fraction of <i>friends</i> (i.e., agents of their own group) within a neighborhood around their location. The model's basic assumption is as follows: an agent, located in the center of a neighborhood where the fraction of friends <b>f</b> is less than a predefined tolerance threshold <b>F</b> (i.e., <b>f &lt; F)</b>, will try to relocate to a neighborhood for which the fraction of friends is at least <b>f </b>(i.e.,<b> f &#8805; F</b>) (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#schelling1978">Schelling 1978 </a>p. 148). Note that a high threshold value of <b>F</b> corresponds to a low agent's tolerance to the presence of strangers within the neighborhood. 
+
+<p></p></dd><dt><b><a name="1.3">1.3</a></b></dt><dd>Schelling studied the dynamics generated by this simple relocation rule for the case of two groups of equal size and a common tolerance threshold <b>F </b>for both groups. The study revealed the existence of a critical tolerance threshold <b>F<sub>segr</sub></b> &#8776; 1/3 such as, for <b>F &lt; F<sub>sgr</sub></b> initially random pattern remains, in time, random-like, while for <b>F &#8805; F<sub>sgr</sub></b> initially random pattern converges to a segregate pattern (Figure 1). 
+
+<p></p><center>
+<a name="fig1"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure1.png" width="800" height="413" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 1</b>. (a) initial condition of one of Schelling's experiments; (b) stable segregated pattern obtained in several iterations (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#schelling1974">Schelling 1974</a>)
+</td></tr></tbody></table>
+</center><p>
+</p><p></p></dd><dt><b><a name="1.4">1.4</a></b></dt><dd>Two results of Schelling's study are regarded as central: (a) the value of <b>F<sub>sgr </sub></b>is essentially lower than the intuitively expected value of 1/2; (b) the change of the limit pattern from pseudo-random to segregated as <b>F</b> passed the value of <b>F<sub>sgr </sub></b>is abrupt, thus the model does not produce intermediate patterns.
+
+
+<h4>Schelling model versus real-world residential patterns
+</h4><p></p></dd><dt><b><a name="1.5">1.5</a></b></dt><dd>Real-world residential dynamics is mainly governed by economic factors and, thus, Schelling model patterns are usually considered as having greater theoretical than applied importance. However, in some cases direct correspondence between the model patterns and real residential distributions can be established. Our study is motivated by one of these cases: the Jewish-Arab ethnic residential distribution in Israeli cities. Based on the Israeli population census of 1995 (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2003">Benenson and Omer 2003</a>), we were able to construct patterns for ethnically mixed Israeli cities at the resolution of individual houses, which is equivalent to the resolution of the Schelling model.
+
+<p></p></dd><dt><b><a name="1.6">1.6</a></b></dt><dd>Empirical evidence supports Schelling-like views of the residential interactions between the Jewish and Arabs families in Israel; both tend to reside in neighborhoods that have sufficient numbers of residents of their ethnic group (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#omer1996">Omer 1996</a>). Thus, we can consider residential patterns in the mixed Israeli cities as a "stylized" outcome of the residential choice of Schelling's residential agents.
+
+<p></p></dd><dt><b><a name="1.7">1.7</a></b></dt><dd>We consider the residential pattern of Arab Muslims, Arab Christians and Jews in the cities of Yaffo and Ramle, both of which are located in central Israel. Yaffo is actually the southern part of the city of Tel Aviv-Yaffo while Ramle is located 15 km south-east of Yaffo. The ethnic pattern of Yaffo in 1995 is presented in Figure 2. The city contains segregated Arab and Jewish areas; in Ajami, a neighborhood in the center (Area A), Christians and Muslims live together, and in Yaffo-Daled, a neighborhood in the south (Area B), the population is Jewish. Some of the boundaries between Jewish and Arab areas in Yaffo are sharp (Area D), while some are extended (Area C).
+
+<p></p></dd><dt><b><a name="1.8">1.8</a></b></dt><dd>The ethnic residential pattern of the city of Ramle is presented in Figure 3 and is more complex than Yaffo. Large areas of the city are populated almost solely by Jews (Area A), while some are populated almost exclusively by Muslims (Area B). The city contains integrated areas (Area C), which, unlike Yaffo, are remote from the segregated Arab areas. The city also contains areas populated by Muslims and Christians (Area D) and an area where Christians and Jews coexist (Area E).
+
+<p></p></dd><dt><b><a name="1.9">1.9</a></b></dt><dd>Yaffo and Ramle patterns are thus essentially more variable than the integrated and segregated patterns characteristic of the Schelling model: the pattern contains homogeneous patches of Arab and Jewish populations and several integrated areas with different fractions of Arab and Jewish populations in each. Yaffo's integrated patches are at the boundary between the segregate patches; in Ramle segregated and aggregated areas are not necessarily adjacent and can be separated by the non-populated areas. 
+<p></p><center>
+<a name="fig2"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure2.png" width="720" height="827" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 2</b>. Ethnic residential distribution of Yaffo in 1995
+</td></tr></tbody></table>
+</center><p>
+
+
+</p><p></p><center>
+<a name="fig3"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure3.png" width="800" height="593" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 3</b>. Ethnic residential distribution of Ramle in 1995
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="1.10">1.10</a></b></dt><dd>Several explanations for this qualitative difference between the observed patterns and Schelling's theoretical patterns can be proposed. First, ignoring economics, Yaffo and Ramle patterns are still in a developmental stage, thus some of the patterns may be temporary. Second, low-income Jews and Arabs may not be able to avoid living together, while the richer Jews and Arabs are able to segregate. Third, contrary to the previous explanation, poor Jews and Arabs may be intolerant of each other and thus segregate, while wealthy householders may be tolerant and thus stay together. Each of these explanations could be tested if the data on migration activity and individual wealth were available. However, taking Yaffo and Ramle patterns as a source of inspiration, can the observed patterns still be explained within the non-economic Schelling framework? 
+
+<p></p></dd><dt><b><a name="1.11">1.11</a></b></dt><dd>To simplify let us consider the Muslim and Christian Arabs as a single group. Conceptually, in the Jewish-Arab residential patterns of Yaffo and Ramle, we can specify three qualitatively different configurations (Figure 4):
+
+<p></p><center>
+<a name="fig4"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure4.png" width="800" height="549" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 4</b>. Three qualitatively different patterns in Yaffo and Ramle and the corresponding Schelling-like patterns: (a) two segregated patches; (b) segregated patch adjacent to integrated patch; (c) integrated patches adjacent to two segregated patches
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="1.12">1.12</a></b></dt><dd>In the first pattern (Figure 4a), two segregated groups are separated by a narrow boundary of transition. In the second pattern (Figure 4b), the majority of members of one of the groups are segregated while some of the members are integrated with the members of the other group. The third and most complex pattern (Figure 4c) presents two segregated groups, each adjacent to the integrated area.
+
+<p></p></dd><dt><b><a name="1.13">1.13</a></b></dt><dd>In this paper, we demonstrate that the variety of Schelling model patterns is greater than the random-segregated dichotomy and that the patterns in Figures 4a and 4b, can be generated by the model if the <i>numbers of two groups</i> or <i>group tolerance thresholds</i> are different. However, the Schelling model does not generate persistent patterns that contain segregated patches of both groups together with  integrated patches, as in Figure 4c.
+
+<p></p></dd><dt><b><a name="1.14">1.14</a></b></dt><dd>The structure of the paper is as follows: Section 2 presents the state-of-the-art of Schelling model studies and describes the kind of dynamics that generates the patterns that are neither segregated nor integrated (we call them mixed). Section 3 formally describes the model and the methodology of the study. The results of the study are presented in Section 4 and are followed by the discussion in Section 5.
+</dd></dl><h3><img align="Bottom" src="./121_files/bullet.gif" width="23" height="23" alt="* ">Schelling model studies
+</h3><dl compact=""><dt></dt><dd>
+<h4>Irregular partition of space
+</h4></dd><dt><b><a name="2.1">2.1</a></b></dt><dd>Studies of the Schelling model focus on conditions enabling segregation and on the characteristics of the patterns produced by the model. As can be expected, the model results are qualitatively robust to the structure of residential space. Irregular partition of the plane into polygonal units and neighborhood definition based on polygon adjacency do not change the main results of the pattern's dichotomy and the abrupt transition from integrated to segregated limit pattern (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#flache2001">Flache and Hegselmann 2001</a>). Laurie and Jaggi (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#laurie2002">2002</a>, <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#laurie2003">2003</a>) supplemented this finding by systematically investigating Schelling model dynamics as depending on the size of the neighborhoods and revealed, as should be expected, that the size of homogeneous patches increases with the growth of the neighborhood radius while the number of homogeneous patches in patterns decreases. 
+
+<h4>Asymmetric relations, more than two groups
+</h4><p></p></dd><dt><b><a name="2.2">2.2</a></b></dt><dd>Portugali et al. (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#portugali1994">1994</a>, <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#portugali1995">1995</a>) showed that Schelling model patterns converge toward segregation even if only agents of <i>one group </i>react to the fraction of friends while agents of the other group are indifferent. However, in that case the tolerance threshold that separates systems converging toward integrated as opposed to segregated patterns is essentially higher than the value of 1/3, characteristic for the symmetric case. Benenson (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson1998">1998</a>) investigated the Schelling model for the case of several groups of agents characterized by several binary characteristics. In addition to integrated and segregated stable patterns, he revealed unstable but persistent regimes in which homogeneous patterns of the agents of one or more groups are repeatedly self-organizing and vanishing.
+
+<h4>Accounting for economic differences between agents
+</h4><p></p></dd><dt><b><a name="2.3">2.3</a></b></dt><dd>Several studies (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benard2007">Benard and Willer 2007</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson1999">Benenson 1999</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#fossett2006b">Fossett 2006b</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#portugali2000">Portugali 2000</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2009">Benenson and Hatna 2009</a>) consider agents characterized by continuous "economic status," which can be compared with the cells' price. The agents search for neighborhoods that are both "friendly" and "sufficiently wealthy." As might be expected, system dynamics become more variable in this case, depending on how the agents' residential preferences depend on the neighbors' group identity and status. 
+
+<h4>Agents that exchange places
+</h4><p></p></dd><dt><b><a name="2.4">2.4</a></b></dt><dd>A qualitatively different way of modeling agents' relocation is to assume that unsatisfied agents exchange their places rather than search for a vacancy over all unoccupied cells. This view attracted the attention of several researchers (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#pollicott2001">Pollicott and Weiss 2001</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#zhang2004">Zhang 2004</a>), who also assume that the preferences of agents are non-monotonous, and they might prefer neighborhoods with a low fraction of foreigners to those occupied exclusively by friends. The dynamics of the model patterns in this case are also more complex than the integrated-segregated dichotomy. However, the mathematical properties of these models differ qualitatively from the standard settings and we thus consider this formulation as different from Schelling's original model.
+
+<h4>The "Bounded Neighborhood" model
+</h4><p></p></dd><dt><b><a name="2.5">2.5</a></b></dt><dd>Another variant of the Schelling model is the "Bounded Neighborhood" model that was also presented by Schelling (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#schelling1978">1978</a>, p. 155) but is less popular than the version discussed above. In the "Bounded Neighborhood" version, instead of a regular grid, the grid is divided into blocks, which are essentially larger than the neighborhoods of the popular version of the model. No matter where the agent is located within the block, it reacts to the fraction of friends all over it, and leaves the block if the fraction of friends is below the tolerance threshold<b> F</b>. Different agents, however, can react to different threshold fractions of friends within the block, and the main parameter of the "Bounded Neighborhood" model is the distribution of the agents' <b>F</b>-values. 
+
+<p></p></dd><dt><b><a name="2.6">2.6</a></b></dt><dd>The analytic investigation of this version of the model was started by Schelling (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#schelling1978">1978</a>) and continued by Clark (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#clark1991">1991</a>, <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#clark1993">1993</a>, <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#clark2002">2002</a>, <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#clark2006">2006</a>). They have demonstrated that both groups can persist in a block in case agents of each type essentially vary in their tolerance to strangers. However, the equilibrium is not globally stable and, depending on initial conditions, block's population can converge to a segregated or aggregated state for the same distributions of tolerance.
+
+<p></p></dd><dt><b><a name="2.7">2.7</a></b></dt><dd>A spatial version of the "Bounded Neighborhood" model, in which the agents' population consists of more than two ethnic groups and residential agents react to the population structure and migrate among adjacent blocks in case of unsatisfied demands, has been investigated in depth in a series of recent simulations by Fossett (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#fossett2005">Fossett and Waren 2005</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#fossett2006a">Fossett 2006a</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#fossett2006b">Fossett 2006b</a>), who also directly relates the model's results to residential patterns in the real-world cities. Fossett aimed at reflecting the situation in the United States and considered three residential groups—White, Black and Hispanic—who also differ in their economic status. The aggregate units used are 7 × 7 cell blocks and the city is represented by the 12 × 12 grid of blocks. Fossett (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#fossett2006a">2006a</a>) investigated the relationship between ethnic and status segregation and concluded that this interaction might limit our ability to integrate the ethnic groups. Specifically, he pointed out that reduction in housing discrimination by race may not necessarily lead to large declines in ethnic segregation. 
+
+<h4>Application of the Schelling model for real cities
+</h4><p></p></dd><dt><b><a name="2.8">2.8</a></b></dt><dd>Several attempts to apply the Schelling model to the real-world situation (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2002">Benenson et al. 2002</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#koehler2002">Koehler and Skvoretz 2002</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#bruch2006">Bruch and Mare 2006</a>) provide likelihood approximations of the segregated or more complex residential distributions observed in cities. In what follows we limit ourselves to abstract models and do not delve into greater details of these implementations.
+
+<h4>"Liquid" and "Solid" dynamics
+</h4><p></p></dd><dt><b><a name="2.9">2.9</a></b></dt><dd>A general insight into the relation between the rules and the patterns engendered by the Schelling model was suggested by Vinkovic and Kirman (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#vinkovic2006">2006</a>), who consider a continuous analog of the Schelling model. Namely, they start with representing eight cells of the 3 × 3 neighborhood as eight equal sectors, and then weaken the discrete representation of space by considering each sector's angle as a continuous variable. The continuous representation makes it possible to describe the model dynamics by means of differential equations and to further investigate the dynamics of the boundaries of the homogeneous clusters. 
+
+<p></p></dd><dt><b><a name="2.10">2.10</a></b></dt><dd>The analysis of the continuous model results in a differentiation between two fundamental types of relocation rules for the Schelling model: rules that specify Schelling's system as representing solid-like matter and rules that specify it as representing liquid-like matter (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#vinkovic2006">Vinkovic and Kirman 2006</a>). The Schelling model represents "solid matter" if the rules enable relocation to a <i>better location only</i>. In this case, the system stalls when converging to a pattern in which none of the agents can improve their state. Usually, the solid Schelling pattern stalls after about ten time steps, with an essential fraction of agents who are dissatisfied with their location but unable to find a better one. The rules that allow relocation to cells<i> of the same</i> utility result in liquid-like dynamics. The liquid Schelling system does not stall even if all the agents are satisfied with their location and, eventually, reaches a persistent state where the characteristics of the pattern (such as level of segregation) do not change, vast majority of agents are satisfied with their location and rare migrations result in slow and non-directed evolution of patch boundaries.
+
+<p></p></dd><dt><b><a name="2.11">2.11</a></b></dt><dd>Vinkovic and Kirman (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#vinkovic2006">2006</a>) demonstrate that the persistent patterns of the model that allows relocation to better locations only are numerous and depend on the details of the model rules, while the persistent patterns of the "liquid" view of relocation are just two: integrated and segregated. They also claim that the model dynamics are robust to variations in the rules' details insofar as the set of rules result in "solid" or "liquid" pattern dynamics. 
+
+<p></p></dd><dt><b><a name="2.12">2.12</a></b></dt><dd>The solid-liquid dichotomy is relatively new and the studies of the Schelling model we are aware of do not specify explicitly whether the model rules permit agents to relocate between cells of the same utility. However, when applying Schelling's view to the real world, it seems necessary to enable relocation between residences of the same utility in order to reflect numerous reasons of household migrations that are not captured by the neighborhood and ethnic based view, say, distance to facilities or jobs. 
+
+<p></p></dd><dt><b><a name="2.13">2.13</a></b></dt><dd>Following Vinkovic and Kirman's (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#vinkovic2006">2006</a>) view, we investigated a set of rules that on the one hand directly interprets Schelling's idea of resident's reaction to the fraction of friends in the neighborhood as a determinant of the residential choice, and on the other hand enables migration between cells of the same utility, i.e., entails a liquid-like dynamics (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2011">Benenson and Hatna 2011</a>). The study of the model reveals qualitatively new results: the variety of its patterns is greater than random-segregated dichotomy. Namely, for a sufficiently wide range of parameters, the model pattern converges to a <i>mixed</i> state, in which an essential portion of one group segregates while the rest of its members remain integrated with the other group. 
+
+<h4>The mixed patterns 
+</h4><p></p></dd><dt><b><a name="2.14">2.14</a></b></dt><dd>The mixed patterns are qualitatively different from the well-known segregated and integrated ones. To illustrate, let us consider a city with a 0.2:0.8 ratio of group sizes. In this case, for values of <b>F</b> within the interval of ˜ (0.08, 0.17), an initially random pattern converges, in time, to a state in which part of the area is occupied by the majority exclusively, while the rest of the area is aggregated (Figure 5). As we have demonstrated numerically and supported analytically (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2009">Benenson and Hatna 2009</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2011">Benenson and Hatna 2011</a>), the values of <b>F</b> that generate mixed patterns are lower than <b>F<sub>sgr</sub></b>.
+
+<p></p><center>
+<a name="fig5"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure5.png" width="800" height="287" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 5</b>. (a) integrated (b) mixed and (c) segregated persistent patterns produced by the Schelling model for the 0.2:0.8 Blue-to-Green size ratio
+</td></tr></tbody></table>
+</center><p>
+
+
+</p><p></p></dd><dt><b><a name="2.15">2.15</a></b></dt><dd>Mixed patterns further undermine the view of the Schelling model as robust to variations of assumptions. The qualitatively different patterns obtained for the unequal group numbers manifest the possibility that the emergence of real-world residential patterns, as those presented in Figures 2-4, can still be qualitatively explained by the Schelling model. The deviation from the 1:1 ratio of the groups' sizes is only one of several possible alterations of the "commonly accepted" settings. These settings, however, are just a tradition and are not related to the basic Schelling assumption of agents who aim at residing within friendly neighborhoods. There are several other unnecessary settings, such as the assumptions of equal tolerance threshold of members of both groups, identical reaction of agents of a given group to neighbors and agents' identical view of the neighborhood size and form. 
+
+<p></p></dd><dt><b><a name="2.16">2.16</a></b></dt><dd>In this paper, we investigate two alterations of the standard assumptions: we study Schelling model dynamics in the case of non-equal groups and non-equal tolerance thresholds of the groups (which are still identical for all agents within the group). We demonstrate that the mixed patterns are typical for a population of highly but not absolutely tolerant agents and discuss the extent to which this formal result can explain the real-world residential patterns as observed in Yaffo and Ramle.
+
+
+</dd></dl><h3><img align="Bottom" src="./121_files/bullet.gif" width="23" height="23" alt="* ">Formalization of the model and the methodology of investigation
+</h3><dl compact="">
+<dt><b><a name="3.1">3.1</a></b></dt><dd>In this paper, we apply the model rules defined in Benenson and Hatna (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2011">2011</a>).
+
+<h4>Formal representation of the model rules
+</h4><p></p></dd><dt><b><a name="3.2">3.2</a></b></dt><dd>Let us denote an agent as <b>a,</b> a cell as <b>h</b> and the neighborhood of <b>h</b>, excluding <b>h</b> itself, as <b>U(h)</b>. We consider <b>U(h)</b>  to be a Moore's square <b>n × n</b> neighborhood (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#moore1970">Moore 1970</a>) and denote the fraction of <b>a</b>'s "friends" (i.e., agents belonging to <b>a</b>'s group) among all agents located within the neighborhood <b>U(h) </b>as <b>f<sub>a</sub>(h)</b>. Note that we ignore empty cells within <b>U(h)</b>.
+
+<p></p></dd><dt><b><a name="3.3">3.3</a></b></dt><dd>City space: <b>N × N</b> grid of cells on a <i>torus</i>, the latter used to avoid boundary effects. A cell cannot be occupied by more than a single agent. There is no emigration or immigration.
+
+<p></p></dd><dt><b><a name="3.4">3.4</a></b></dt><dd>There are two groups of residential agents: Blue (<b>B</b>) and Green (<b>G</b>).  
+
+<p></p></dd><dt><b><a name="3.5">3.5</a></b></dt><dd>Time: discrete time, asynchronous updating (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#cornforth2005">Cornforth et al. 2005</a>). We follow Schelling's view of residential behavior and assume that agents observe the system's changes <i>immediately after</i> they occur. At each time step, every agent decides whether and where to relocate. Agents are considered in random order, which is established anew at each time step. 
+
+<p></p></dd><dt><b><a name="3.6">3.6</a></b></dt><dd>Agent's <b>a</b> tolerance threshold <b>F<sub>a</sub></b>: following Schelling's view, we assume that an agent <b>a</b> located at <b>h</b> is satisfied if the fraction of friends within <b>U(h)</b> is <b>F<sub>a</sub></b> or higher. As the tolerance threshold is common for all agents of the Blue or Green<b> </b>group, we denote it as <b>F<sub>B</sub></b> or <b>F<sub>G</sub></b> respectively.
+
+<p></p></dd><dt><b><a name="3.7">3.7</a></b></dt><dd>Neighborhood's <b>U(h)</b> utility for <b>a:</b>  we define the <i>utility</i> <b>u<sub>a</sub>(h)</b> of the neighborhood <b>U(h)</b> for <b>a </b>as:
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<b>u<sub>a</sub>(h)</b> = <b>min(f<sub>a</sub>(h), F<sub>a</sub>)/F<sub>a</sub></b>        if  <b>F<sub>a</sub></b> &gt; 0
+</td>
+<td align="Right" valign="Middle" width="40">
+(1)
+</td></tr></tbody></table>
+</center><p>
+
+and assume that <b>u<sub>a</sub>(h) = 1</b> if <b>F<sub>a </sub>= 0</b> (absolutely tolerant agent <b>a</b>) (Figure 6)
+
+</p><p></p><center>
+<a name="fig6"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/FIgure6.png" width="800" height="266" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 6</b>. The utility of location <b>h</b> for an agent <b>a</b> as a function of the fraction of friends, <b>f<sub>a</sub></b>, within <b>U(h)</b>: (a) absolutely tolerant agent (<b>F<sub>a</sub> =</b> 0), (b) agent seeking for 50% of friends (<b>F<sub>a</sub> =</b> 0.5), (c) absolutely intolerant agent (<b>F<sub>a</sub> = </b>1)
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="3.8">3.8</a></b></dt><dd>Agent's residential behavior: at each time step <b>t,</b> an agent <b>a</b> located at <b>h</b> decides whether to relocate or remains at <b>h</b>. When relocating, an agent <b>a</b> considers <b>w</b> vacant locations and compares their utility to the utility of its current location <b>h</b>. The awareness of <b>a</b> about vacancies does not depend on the vacancies' distance to <b>h</b>.
+
+<p></p></dd><dt><b><a name="3.9">3.9</a></b></dt><dd>Agent <b>a </b>performs its relocation decision in two steps:<p>
+
+Step 1:<i> </i>Decides whether to relocate:<br>
+-	Generates a random number <b>p</b>, uniformly distributed on (0, 1).<br>
+-	<b>If (u<sub>a</sub>(h) &lt; 1</b> <b>or</b> <b>(u<sub>a</sub>(h) = 1 and</b> <b>p &lt; m)) </b>then tries to relocate, otherwise stays at <b>h</b>.</p><p>
+Step 2: If the decision is "to relocate," then searches for a new location and decides whether to move there: <br>
+-	Memorizes the utility <b>u<sub>a</sub>(h)</b> of the current location <b>h</b>.<br>
+-	Constructs a set<b> V(a) </b>of relocation opportunities by randomly selecting<b> w</b> vacancies from all cells that are vacant at that moment.<br>
+-	Estimates utility <b>u<sub>a</sub>(v)</b> of each <b>v</b> &#8712; <b>V(a)</b> for <b>a</b>, and selects one of the highest utility <b>u<sub>a</sub>(v<sub>best</sub>)</b>. If there are several best vacancies in <b>V(a)</b>,<b> </b>chooses one of them randomly.<br>
+-	Moves to <b>v<sub>best</sub></b> if either<br>
+<b>u<sub>a</sub>(h) &lt; 1 and u<sub>a</sub>(v<sub>best</sub>) &gt; u<sub>a</sub>(h)</b>, the utility of <b>v<sub>best</sub></b> is higher than that of <b>h</b>, or<br>
+<b>u<sub>a</sub>(h) = 1 and u<sub>a</sub>(v<sub>best</sub>) = 1 </b>, the utility of <b>h</b> is high and the move to <b>v<sub>best</sub></b> is unrelated to the number of friends in the neighborhood, <br>
+-	Otherwise stays at<b> h</b>.</p><p>
+For <b>m &gt; 0</b>, the above model rules entail liquid-like dynamics. Note, however, that only agents who are satisfied with their location are allowed to relocate to a vacancy of equal utility; unsatisfied agents can move to higher utility vacancies only.
+</p><p></p></dd><dt><b><a name="3.10">3.10</a></b></dt><dd>It is important to emphasize the manner in which agents choose vacancies. According to the definition of a neighborhood's utility (Equation 1), agents are <i>satisficers</i> (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#simon1982">Simon 1982</a>) who regard a location <b>h</b> as satisfactory as long as the fraction of friends <b>f<sub>a</sub></b> within <b>U(h)</b> is equal or higher than their tolerance threshold <b>F<sub>a</sub></b>. All satisfactory locations are of the same utility 1, and agents do not distinguish between them. 
+
+<h4>The methodology of model investigation
+</h4><p></p></dd><dt><b><a name="3.11">3.11</a></b></dt><dd>We investigate the persistent model patterns based on a 50<b> </b>×<b> </b>50 torus, assuming that 2% of the cells are empty (<b>d</b> =2%). We assume that the rate of spontaneous relocation attempts is 1% per iteration (<b>m</b> = 0.01) and an agent considers at most 30 vacancies when trying to relocate (<b>w</b> = 30).
+
+<p></p></dd><dt><b><a name="3.12">3.12</a></b></dt><dd>In discrete cell space, the number of cells in the neighborhood excluding the central cell determines the series of possible tolerance thresholds <b>F</b>. For fully occupied 3 × 3 Moore neighborhood of eight<b> </b>cells, this series would be <b>F</b> = 0/8, 1/8, … 7/8, 8/8. Schelling (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#schelling1971">1971</a>) employed a 3<b> </b>×<b> </b>3 Moore neighborhood. However, nine possible values of <b>F</b> are insufficient for understanding the model dynamics. We thus use a 5<b> </b>×<b> </b>5 Moore neighborhood, which results in the series of 25 <b>F</b>-values (0/24, 1/24, …, 24/24), sufficient for representing the model phenomena in full. 
+
+<p></p></dd><dt><b><a name="3.13">3.13</a></b></dt><dd>In what follows, we investigate model patterns as depending on the: 
+<ul><li>Fraction <b>&#946;</b> of Blue agents.
+</li><li>Tolerance threshold<b> F<sub>B</sub></b> of Blue<b> </b>agents.
+</li><li>Tolerance threshold<b> F<sub>G</sub></b> of Green<b> </b>agents.
+</li></ul>
+
+<p></p></dd><dt><b><a name="3.15">3.15</a></b></dt><dd>We assume that the Blue agents are minority and investigate model patterns for the series of &#946;-values: 0.05, 0.15, …, 0.5. As explained above, the series of values for <b>F<sub>B</sub></b> and <b>F<sub>G</sub> </b>are 0/24, 1/24, …, 24/24. 
+
+<p></p></dd><dt><b><a name="3.16">3.16</a></b></dt><dd>Figure 7 presents the 3D "half-cube" of the investigated parameters' space. We begin the study of model patterns with the parameter's values on the cube's surface and then combine the results in order to describe model patterns for all values of <b>&#946;</b>,<b> F<sub>B</sub></b> and<b> F<sub>G</sub></b>. 
+
+<p></p><center>
+<a name="fig7"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure7.png" width="395" height="335" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 7</b>. Parameter space of the Schelling model as investigated in this paper
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="3.17">3.17</a></b></dt><dd>To ensure that the model patterns are not dependent on initial conditions, all model runs are repeated starting with two initial patterns: random and fully segregated (Figure 8). 
+
+<p></p><center>
+<a name="fig8"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure8.png" width="513" height="250" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 8</b>. Model initial patterns (a) random, (b) fully segregated
+</td></tr></tbody></table>
+</center><p>
+
+
+</p><h4>Characterization of model patterns</h4>
+<h5>The use of Moran's <b>I</b> for recognizing integrated and segregated patterns
+</h5><p></p></dd><dt><b><a name="3.18">3.18</a></b></dt><dd>In what follows we characterize the global properties of the Blue and Green<b> </b>agents' patterns using the Moran's index <b>I</b> of spatial association (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#anselin1995">Anselin 1995</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#getis1992">Getis and Ord 1992</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#zhang2007">Zhang and Linb 2007</a>) applied to binary data (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#lee2001">Lee 2001</a>; <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#griffith2010">Griffith 2010</a>).
+
+<p></p></dd><dt><b><a name="3.19">3.19</a></b></dt><dd>The Moran's <b>I</b> statistic is calculated for the spatial variable <b>x<sub>h </sub></b>over the occupied cells according to (2). The variable <b>x<sub>h</sub></b> is defined as follows: <b>x<sub>h</sub> = 0</b> if <b>h</b> is occupied by Blue<b> </b>agent and <b>x<sub>h</sub> = 1</b> if <b>h</b> is occupied by Green<b> </b>agent.
+
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./121_files/Equation2.png" width="372" height="103" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(2)
+</td></tr></tbody></table>
+</center><p>
+
+
+where <b>x<sub>i</sub></b>, <b>x<sub>j</sub></b> denote the values of <b>x<sub>h</sub></b> in cells <b>i</b>, <b>j</b>; <b>M</b> = <b>Round((1-d)×N<sup>2</sup>) </b>is the overall number of occupied cells, <b>x </b>bar<b> </b>is the mean value of <b>x<sub>h</sub></b> over the occupied cells, <b>w<sub>ij</sub> = 1</b> if <b>j</b> <b>&#8712; U(i)</b>, and <b>w<sub>ij</sub> = 0</b>, otherwise.
+</p><p></p></dd><dt><b><a name="3.20">3.20</a></b></dt><dd>A value of Moran's <b>I</b> close to 0 represents a random (integrated) pattern while a value close to 1 represents complete segregation (see <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#zhang2007">Zhang and Linb 2007 </a>for a review). Based on the permutation test for the 50<b> </b>×<b> </b>50 torus city, critical values of Moran's <b>I</b> equals 0.002 at <b>p</b> = 0.01. In what follows, we consider a city pattern as random if Moran's <b>I</b> is below 0.002. We run simulations for 50,000 time steps, which are sufficient for the pattern to reach a persistent state, if exist, or exhibit fluctuations (see below). The characteristics of the patterns were calculated for 10,000 time interval between the iteration 40,000 and 50, 000.
+<h5>Three possible parts of the mixed pattern 
+</h5><p></p></dd><dt><b><a name="3.21">3.21</a></b></dt><dd>The Moran's <b>I</b> calculated over the entire city area is useful for distinguishing between fully integrated (random) patterns, for which Moran's <b>I</b> is close to zero, segregated  patterns, for which I is close to 1 and other (mixed) patterns, for which Moran's <b>I</b> is higher than 0 but lower than 1. However, the value of Moran's <b>I</b> cannot distinguish between the two types of mixed patterns presented in Figures 4b and 4c; for both of these the value of Moran's <b>I</b> would be intermediate. To distinguish between these types of patterns, we employ the following algorithm that recognizes the two segregated and the "residual" parts of the city as presented in Figures 4a-c (the size of all the neighborhoods below are 5 × 5): 
+
+<ol><li><i>Identify the segregated (Blue and Green) parts:</i> <br>
+Loop by all occupied cells and identify the Blue cells that have only Blue neighbors and the Green cells that have only Green neighbors. Denote these two cell sets as <b>B^</b> and <b>G^</b> respectively. 
+</li><li>Identify the boundary of the segregated parts: <br>
+Loop by all occupied cells that do not belong to <b>B^</b> or <b>G^</b>, and identify the cells which neighborhoods have non-empty overlap with <b>G^</b> or <b>B^</b>. Denote this set of cells as <b>E1^</b>. 
+</li><li><i>Identify the boundary of the residual part of the city and combine it with the boundary of the segregated parts:</i> <br>
+Loop by all occupied cells that do not belong to <b>B^</b>, <b>G^</b> or <b>E1^</b>, and identify those, neighborhoods which have non-empty overlap with <b>E1^</b>. Denote these cells as <b>E2^</b> and unite <b>E1^</b> and <b>E2^</b> into <b>E^</b>.
+</li><li><i>Denote the cells that do not belong to <b>B^</b>, <b>G^</b> or <b>E^</b> as <b>M^</b>.</i><br>
+</li></ol>
+Figure 9 presents the algorithm steps for the patterns in Figures 4b and 4c. As stated above, the model city is a torus.
+ <p></p><center>
+<a name="fig9"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/figure9.png" width="800" height="476" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 9</b>. The algorithm for identifying segregated (<b>B^</b>, <b>G^</b>), boundary (<b>E^</b>) and residual (<b>M^</b>) parts, applied to the pattern (b) and (c) in Figure 4b
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="3.22">3.22</a></b></dt><dd>Below we distinguish between the patterns in Figures 4b and 4c based on the size of the segregated Blue <b>c(B^)</b>, segregated Green <b>c(G^)</b> and residual <b>c(M^)</b> parts in the city.<b> </b>Namely, we define the <b>C</b>-index as: 
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<b>C</b> = <b>min(c(B^), c(G^), c(M^))/N<sup>2</sup></b></td>
+<td align="Right" valign="Middle" width="40">
+(3)
+</td></tr></tbody></table>
+</center><p>
+
+The real-world and abstract patterns in Figure 4 contain either two or all three possible parts, and the relative area of each part is high. We thus classify a pattern as of the Figure 4c type if the value of <b>C</b> is at least 10% (<b>C </b>&#8805; 10%). High <b>C-</b>value threshold of 10% guarantees that each of the three parts could be visually recognized in the pattern, as characteristic of the real-world patterns in Figure 4.
+</p><h5>Persistent and fluctuating patterns
+</h5><p></p></dd><dt><b><a name="3.23">3.23</a></b></dt><dd>Our setting of the Schelling model allows for spontaneous relocation and, thus, the model residential pattern never stalls. However, for the majority of <b>&#946;</b>,<b> F<sub>B</sub></b> and<b> F<sub>G </sub></b>values the pattern converges to <i>persistent state</i>, in which its segregation characteristics do not change significantly. When it is clear from the context, we use "model pattern" when referring to "model persistent pattern." 
+
+<p></p></dd><dt><b><a name="3.24">3.24</a></b></dt><dd>For some combinations of parameters the patterns do not stabilize. An extreme example is the case of <b>F<sub>G </sub>= </b>3/24<b>, F<sub>B</sub></b> = 7/24, <b>&#946; </b>= 0.5. As can be seen from Figure 10a, the Moran's <b>I</b> for this set of parameters fluctuates, in time, between 0.35 - 0.70 and so does the <b>C-</b>index, which fluctuates between 0 and 15%. Figure 10b presents two extreme patterns generated for this set of parameters: one segregated, qualitatively similar to the pattern presented in Figure 4a, and the other mixed, qualitatively similar to the pattern presented in Figure 4c. The left pattern is characterized by the relatively high value of Moran's <b>I</b> and low value of the <b>C</b>-index while the right pattern is characterized by the relatively low value of Moran's <b>I</b> and high value of the <b>C</b>-index.
+
+<p></p><center>
+<a name="fig10"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure10.png" width="714" height="851" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 10</b>. The fluctuating pattern of <b>F<sub>G </sub>= </b>3/24, <b>F<sub>B </sub></b>=7/24,<b>&#946;</b>=0.5: (a) The dynamics of Moran's <b>I</b> and <b>C-</b>index for the first 200,000 iterations (b) Typical mixed and segregated patterns observed.
+</td></tr></tbody></table>
+</center><p>
+
+
+
+
+
+</p></dd></dl><h3><img align="Bottom" src="./121_files/bullet.gif" width="23" height="23" alt="* ">Results of the model investigation
+</h3><dl compact="">
+<dt><b><a name="4.1">4.1</a></b></dt><dd>In what follows, we briefly repeat the classic model results (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#4.2">§4.2</a>) and proceed with investigating the model behavior as dependent on all three parameters <b>&#946;</b>,<b> F<sub>B</sub></b> and<b> F<sub>G</sub></b>.<b> </b><a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#4.6">§4.6</a>-<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#4.11">§4.11</a> deal with special subsets of the (<b>&#946;</b>,<b> F<sub>B</sub></b> and<b> F<sub>G</sub></b>) parameter space. <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#4.18">§4.18</a> onwards considers the general situation.
+<h4>Basic case: equal groups of equal tolerance thresholds (<b>&#946; = 0.5, F<sub>G</sub> = F<sub>B</sub> = F</b>)
+</h4><p></p></dd><dt><b><a name="4.2">4.2</a></b></dt><dd>To verify Schelling's conclusions regarding the case of groups of equal size and tolerance thresholds (Figure 11), we performed 25 model runs for which <b>F<sub>G</sub></b> = <b>F<sub>B</sub></b> = <b>F</b> = 0/24, 1/24, …, 24/24, and, in addition, nine runs with <b>F<sub>G</sub></b> = <b>F<sub>B</sub></b> = <b>F</b> = 0/8, 1/8, …,  8/8 that aimed to investigate the influence of the neighborhood size on model patterns.
+
+<p></p><center>
+<a name="fig11"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure11.png" width="394" height="337" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 11</b>. The investigated set of parameters <b>&#946; = 0.5, F<sub>G</sub> = F<sub>B</sub></b>
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="4.3">4.3</a></b></dt><dd>The Moran's <b>I</b> values as dependent on <b>F</b> are presented in Figure 12. 
+
+<p></p><center>
+<a name="fig12"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/FIgure12.png" width="713" height="316" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 12</b>. Moran's <b>I</b> for model persistent patterns as dependent on <b>F </b>for (a) 3<b> </b>×<b> </b>3 (b) 5<b> </b>×<b> </b>5 neighborhoods
+</td></tr></tbody></table>
+</center><p>
+
+
+</p><p></p></dd><dt><b><a name="4.4">4.4</a></b></dt><dd>Qualitatively, our results are fully consistent with Schelling's findings. Namely, the interval of the <b>F</b>-values consists of two subsets: <b>F</b> &#8804; 4/24 and <b>F</b> &#8805; 5/24. For <b>F</b> &#8804; 4/24, the patterns are random (integrated), while for <b>F</b> &#8805; 5/24 the patterns are segregated. The transition between the two subsets is abrupt. In the case of the 3×3 neighborhood, the results are qualitatively the same but less precise: random patterns are characteristic of <b>F </b>&#8804;<sub><b> </b></sub>1/8<sub><b> </b></sub>= 3/24, while for <b>F</b> &#8805; 2/8 = 6/24 the patterns are segregated.
+
+<p></p></dd><dt><b><a name="4.5">4.5</a></b></dt><dd>The patterns for the case of the 5×5 neighborhood are presented in Figure 13. The unsmooth boundary of the segregated pattern of <b>F</b> = 5/24 seems to correspond to the conceptual pattern of Figure 4a. For the segregated patterns (<b>F</b> &#8805; 5/24), the higher <b>F</b>, the smoother the boundary between the clusters of agents of the same color. This explains the slow growth of Moran's <b>I</b> with the growth of <b>F</b> in Figure 12. 
+
+<p></p><center>
+<a name="fig13"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure13.png" width="800" height="215" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 13</b>. Persistent model patterns for the case of equal groups as depending on <b>F</b>
+</td></tr></tbody></table>
+</center><p>
+</p><h4>Persistent patterns for the 2D-subsets of parameters 
+</h4><p></p></dd><dt><b><a name="4.6">4.6</a></b></dt><dd>In what follows, we investigate the model persistent patterns for the case of Green majority versus Blue minority and values of parameters limited to three 2D subspaces of the 3D half-cube (Figure 14):
+
+<ul><li><b>&#946; </b>&#8712;<b> (0, 0.5], F<sub>B</sub> = F<sub>G</sub></b>: equal tolerance of both groups (Figure 14a);
+</li><li><b>&#946; </b>&#8712;<b>(0, 0.5], F<sub>G</sub> = 0, F<sub>B</sub></b> &#8712;<b> [0, 1]</b>: absolutely tolerant Green majority (Figure 14b);
+</li><li><b>&#946; </b>&#8712;<b>(0, 0.5], F<sub>G</sub> </b>&#8712;<b> [0, 1]</b>, <b>F<sub>B</sub></b> <b>= 0</b>: absolutely tolerant Blue minority (Figure 14c).
+</li></ul>
+
+<p></p><center>
+<a name="fig14"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure14.png" width="682" height="220" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 14</b>. Three investigated 2D-subsets of parameters (a) <b>&#946; </b>&#8712;<b>(0, 0.5], F<sub>B</sub> = F<sub>G</sub></b>, (b) <b>&#946; </b>&#8712;<b>(0, 0.5], F<sub>G</sub> = 0, F<sub>B</sub></b> &#8712;<b> [0, 1]</b>, (c) <b>&#946; </b>&#8712;<b>(0, 0.5], F<sub>G</sub> </b>&#8712;<b> [0, 1]</b>, <b>F<sub>B</sub></b> <b>= 0</b>
+</td></tr></tbody></table>
+</center><p>
+</p><p></p></dd><dt><b><a name="4.7">4.7</a></b></dt><dd>Following Benenson and Hatna (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2011">2011</a>), we denote, for a given <b>&#946;</b>, <b>F<sub>rnd,&#946; </sub></b>as the highest value of <b>F</b> that generates random (integrated) persistent pattern (characterized by close to zero value of the Moran's <b>I</b>) and <b>F<sub>sgr,&#946;</sub></b> as the lowest<sub><b> </b></sub>value of <b>F</b> that entails a segregated pattern (characterized by close to unit value of the Moran's I).<sub><b> </b></sub>As shown above, for <b>&#946; = </b>0.5, the values of <b>F<sub>rnd,0.5</sub></b> and <b>F<sub>sgr,0.5</sub></b> are adjacent, i.e., <b>F<sub>rnd,0.5</sub></b> = 4/24, and <b>F<sub>srg,0.5</sub></b> = 5/24.
+
+<h4> Blue minority versus Green majority, equal tolerance threshold in both groups<b> (&#946; &#8712; (0, 0.5], F<sub>B</sub> = F<sub>G</sub> = F) </b>
+</h4><p></p></dd><dt><b><a name="4.8">4.8</a></b></dt><dd>As presented in §<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#2.14">2.14</a>, the case of unequal groups exhibits mixed patterns. To illustrate, let us consider the case of <b>&#946; = 0.2</b>. The values of Moran's <b>I</b> for the persistent pattern as dependent on <b>F = F<sub>B</sub> = F<sub>G</sub></b> and the patterns for selected values of <b>F</b> are presented in Figure 15.
+
+<p></p></dd><dt><b><a name="4.9">4.9</a></b></dt><dd>As can be seen in Figure 15a, the dependence of the model pattern on <b>F</b> in case of <b>&#946;</b> = 0.2 is different than for the case of <b>&#946;</b> = 0.5. Namely, for <b>F</b> = 2/24, 3/24 and 4/24 the values of Moran's <b>I</b> are non-zero, but yet lower than that characteristic of the segregated patterns. As can be observed in Figure 15b, the patterns for these three values of <b>F</b> are neither random nor segregated. According to Figure 15, <b>F<sub>rnd,0.2</sub></b> = 1/24, while <b>F<sub>sgr,0.2</sub></b> = 5/24 (note that the values of <b>F<sub>sgr,0.2</sub></b> and <b>F<sub>sgr,0.5</sub></b> are the same, and equal to 5/24). For the values of <b>F</b> &#8712; (<b>F<sub>rnd,0.2</sub></b>,<b> F<sub>sgr,0.2</sub></b>), part of the city area is occupied by the Green<b> </b>majority exclusively while the rest of the area is integrated.
+
+As it is shown in Benenson and Hatna (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2009">2009</a>, <a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2011">2011</a>), with the growth of <b>F</b>, the integrated part of the integrated region becomes more compact, thus entailing a growth of the Moran's <b>I</b>. The city abruptly segregates when <b>F</b> increases from 4/24 to 5/24. For <b>F</b> &#8805; 5/24, the Moran's <b>I</b> value slowly increases with an increase in<b> F</b> and the boundary between the Green and Blue clusters becomes smoother, just as for <b>&#946; = 0.5</b>. 
+<p></p><center>
+<a name="fig15"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure15.png" width="800" height="423" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 15</b>. (a) Moran's <b>I</b> and (b) persistent patterns as dependent on <b>F</b>, for <b>&#946;</b> = 0.2
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="4.10">4.10</a></b></dt><dd>The complete view of Moran's <b>I</b> dependence on <b>F</b> and <b>&#946;</b> is presented in Figure 16a. Note that (a) for <b>&#946; &gt; </b>0.05 the pattern abruptly segregates when <b>F</b> passes the threshold value of <b>F<sub>sgr,&#946; </sub></b>= 5/25, while for <b>&#946; = </b>0.05,  <b>F<sub>sgr,0.05</sub></b> = 6/25; (b) the value of <b>F<sub>rnd,&#946;</sub> </b>decreases linearly and the width of the interval of the <b>F</b>-values generating the mixed patterns increases with the decrease in <b>&#946;</b>.  The dependence of the <b>C</b>-index on <b>F</b> and <b>&#946;</b> is presented in Figure 16b. It indicates that for all <b>F</b> &#8800; 5/24 the patterns consist of two parts only, either of segregated Blue and Green or of segregated Green and mixed parts. For <b>F</b>= 5/25, the maximal values of <b>C</b> are positive but far below the 10% level we accepted as characteristic of the complex pattern in Figure 4c. The non-zero <b>C</b>-index obtained for <b>F</b> = 5/24 characterizes essential non-smoothness of the boundary between the segregated Blue and Green areas. The type of pattern as dependent on <b>&#946;, F<sub>B</sub></b>,<b> F<sub>G</sub></b>, is shown in Figure 16c. 
+
+In a theoretical study (Benenson and Hatna 2009) we have demonstrated that for <b>F </b>&#8712;<b> </b>(<b>F<sub>rnd,&#946;</sub></b>,<b> F<sub>sgr,&#946;</sub></b>), in case of the mixed pattern, the distribution of the Green and Blue<b> </b>agents within the integrated part is random. It is important to note that the fraction of minority within these patches is always higher than <b>&#946;</b>, grows with the growth of <b>&#946;</b> and reaches 0.5 when <b>F</b> approaches <b>F<sub>sgr,&#946;</sub></b>. The latter explains the abrupt change from mixed to segregated pattern when <b>F</b> passes the threshold value of <b>F<sub>sgr,&#946; </sub></b>. 
+<p></p><center>
+<a name="fig16"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure16.png" width="800" height="664" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 16</b>. The dependence of (a) Moran's <b>I</b> and (b) <b>C</b>-index on <b>F</b> for <b>&#946;</b> = 0.05, 0.15, …, 0.5 and<b> F<sub>B</sub> = F<sub>G</sub> = F</b> and (c) the sets of parameters characteristic of the random, mixed and segregated patterns in the half cube
+</td></tr></tbody></table>
+</center><p>
+
+</p><h4>Absolutely tolerant group (<b>&#946; &#8712; (0, 0.5], F<sub>G</sub> = 0 or F<sub>B</sub> =0</b>)
+</h4><p></p></dd><dt><b><a name="4.11">4.11</a></b></dt><dd>In this section, we examine the case in which agents of one groups are completely tolerant. We start by describing the case of equal size groups (<b>&#946;</b> = 0.5) and completely tolerant Green agents (<b>F<sub>G</sub> = 0) </b>and then describe the case where the tolerant group is either a majority or minority.
+
+<p></p></dd><dt><b><a name="4.12">4.12</a></b></dt><dd>The case of equal groups (<b>&#946;</b> = 0.5) and completely tolerant agents of one of the groups is briefly mentioned by Portugali et al. (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#portugali1997">1997</a>), who noted that despite the absolute neutrality of members of one group, the residential pattern segregates when the tolerance threshold of the other group is sufficiently high.<b> </b>Our simulations essentially extend this result. As above, for given <b>&#946;</b>, we denote as <b>F<sub>B,rnd,&#946;</sub></b> the highest value of <b>F<sub>B</sub></b> that entails a random pattern and as <b>F<sub>B,sgr,&#946;</sub></b> the lowest<sub><b> </b></sub>value of <b>F<sub>B</sub></b> that entails a segregated pattern. 
+
+<p></p></dd><dt><b><a name="4.13">4.13</a></b></dt><dd>Figure 17 presents the dependence of Moran's <b>I</b> on <b>F<sub>B </sub></b>for the case of <b>&#946;</b> = 0.5 and <b>F<sub>G</sub></b> = 0 and the patterns for selected values of <b>F</b>. According to Figure 17a <b>F<sub>B,rnd,0.5</sub> </b>= 4/24 and Moran's <b>I</b>, value increases linearly with further increase of <b>F<sub>B</sub></b> until <b>F<sub>B</sub></b> reaches <b>F<sub>B,sgr,0.5</sub></b> = 13/24. Unlike the case of <b>F<sub>G</sub></b> = <b>F<sub>B</sub></b>, there is no abrupt change in the level of segregation when <b>F<sub>B</sub></b> approaches <b>F<sub>B,sgr,0.5</sub></b>. For <b>F<sub>B</sub></b> &#8712; [5/24, 12/24] the pattern is mixed.
+
+<p></p></dd><dt><b><a name="4.14">4.14</a></b></dt><dd>The corresponding persistent patterns are shown in Figure 17b. Part of the area of the mixed patterns is occupied exclusively by the fully tolerant Green<b> </b>agents, while few Green agents reside within the integrated part of the patterns. The Blue<b> </b>agents avoid neighborhoods where their fraction is below <b>F<sub>B</sub></b>, and, thus the fraction of fully tolerant Greens residing within the Blue-dominated areas decreases with the increase in <b>F<sub>B</sub></b>. For <b>F<sub>B</sub></b> = 10/24, 11/24 and 12/23, the patterns slightly fluctuate in time, because of the few Green agents that reside within the Blue area. However, the <b>C</b>-index always remains below 3%.
+
+<p></p><center>
+<a name="fig17"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure17.png" width="790" height="293" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 17</b>. Characteristics of model persistent pattern for <b>F<sub>G</sub></b> = 0, <b>&#946;</b> = 0.5: (a) Moran's <b>I</b> as dependent on <b>F<sub>B</sub></b>; (b) persistent patterns for selected values of <b>F<sub>B</sub></b>
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="4.15">4.15</a></b></dt><dd>The dependences of Moran's <b>I</b> and <b>C</b> on <b>&#946;  </b>and <b>F<sub>B</sub></b> for the case of absolutely tolerant  majority or minority are presented in Figure 18. For a tolerant majority (Figure 18c), a decrease in <b>&#946;</b> entails a decrease in <b>F<sub>B,rnd,&#946;</sub></b> and <b>F<sub>B,sgr,&#946;</sub></b>, but at different rates and with the length of the <b>(F<sub>B,rnd,&#946;</sub></b>, <b>F<sub>B,sgr,&#946;</sub></b>) interval thus increasing. The dependence of Moran's <b>I</b> on <b>F<sub>G </sub></b>and <b>&#946;</b> for the case of absolutely tolerant Blue minority is presented in Figure 18a. In this case, the decrease in <b>&#946;</b> results in the growth of both <b>F<sub>G,rnd,&#946;</sub></b> and <b>F<sub>G,sgr,&#946;</sub></b> and a reduction of the interval of mixed patterns to zero when <b>&#946;</b> decreases to 0.15. The three domains of parameters for both cases are presented in Figure 18e. The <b>C-</b>index (Figure 18b, 18d) is non-zero for the values of <b>F</b> just below the threshold that guarantees full segregation, namely <b>F<sub>B</sub>, F<sub>G</sub></b> = 10/24 11/24 and 12/23. The model patterns for these values of <b>F</b> slightly fluctuate in time.
+
+<p></p><center>
+<a name="fig18"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/FIgure18.png" width="800" height="489" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 18</b>. Moran's <b>I </b>in case of absolutely tolerant majority or absolutely tolerant minority: (a) absolutely tolerant Blue minority (<b>F<sub>B</sub></b> <b>= 0</b>); (b)<b> </b>absolutely tolerant Green majority (<b>F<sub>G</sub></b> <b>= 0</b>); (c) parameters characteristic of the random, mixed and segregated patterns
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="4.16">4.16</a></b></dt><dd>Persistent patterns for the case of absolutely tolerant Green majority and <b>&#946;</b> = 0.3 are presented in Figure 19a (<b>F<sub>B,rnd,0.2</sub></b> = 3/24, <b>F<sub>B,sgr,0.2</sub></b> = 13/24). Just as for <b>&#946;</b> = 0.5, with the growth of <b>F<sub>B</sub></b> within (<b>F<sub>B,rnd,0.2</sub></b>, <b>F<sub>B,sgr,0.2</sub></b>),<sub><b> </b></sub>the fraction of absolutely tolerant Green agents residing within the Blue-dominated areas decreases with the growth of <b>F</b>, until, at <b>F<sub>B</sub></b> = 13/24, complete segregation is reached.  Figure 19b presents the series of persistent patterns for the case of absolutely tolerant Blue minority <b>&#946; = </b>0.3.  Just as in the case of absolutely tolerant majority, the fraction of minority within the majority-dominated area decreases with an increase in <b>F<sub>G</sub></b>, and, in parallel, the size of the minority patches increases.  
+
+<p></p><center>
+<a name="fig19"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure19.png" width="800" height="486" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 19</b>. Model's persistent patents for <b>&#946;</b> = 0.3: (a) completely tolerant Green majority (<b>F<sub>G</sub></b> = 0); (b) completely tolerant Blue minority (<b>F<sub>B</sub></b> = 0)
+</td></tr></tbody></table>
+</center><p>
+
+
+</p><p></p></dd><dt><b><a name="4.17">4.17</a></b></dt><dd>Overall, the persistent patterns in case of absolutely tolerant minority do not differ from those obtained for the case of absolutely tolerant majority. The interval of the <b>F</b>-values, for which these patterns are produced, becomes narrower and shifts toward the higher values of <b>F</b> with the decrease in <b>&#946;</b>.  
+
+
+<h4>General case 
+</h4><p></p></dd><dt><b><a name="4.18">4.18</a></b></dt><dd>To complete the description of the model persistent patterns, let us consider their dependence on all three parameters: <b>&#946;</b>, <b>F<sub>B </sub></b>and <b>F<sub>G</sub></b>.<sub> </sub>We do that for four horizontal cross-sections of the half-cube at <b>&#946;</b> = 0.05, 0.2, 0.35, and 0.5.
+
+The four surfaces of Moran's <b>I </b>and<b> C</b> for <b>F<sub>G</sub> </b>&#8804;<b> </b>17/24<b> </b>and <b>F<sub>B </sub></b>&#8804;<b> </b>17/24 and corresponding 3D illustration of the full (<b>F<sub>B</sub>,<sub> </sub>F<sub>G</sub></b>, <b>&#946;</b>) domains producing random, mixed and segregated patterns are presented in Figure 20.  
+<p></p><center>
+<a name="fig20"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./121_files/Figure20.png" width="1024" height="893" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 20</b>.  (a) Moran's <b>I</b> and (b) <b>C</b>-index as dependent on (<b>F<sub>G</sub>, F<sub>B</sub></b>) for <b>F<sub>G</sub> </b>&#8804;<b> </b>17/24,<b> F<sub>B </sub></b>&#8804;<b> </b>17/24 (for larger <b>F<sub>G</sub></b> or <b>F<sub>B</sub> </b>the patterns are always segregated) and <b>&#946;</b> = 0.05, 0.2, 0.35 and 0.5 (the cases of <b>F<sub>B</sub></b> = <b>F<sub>G </sub></b> are marked); (c) the 3D presentation of the (<b>F<sub>B</sub>,<sub> </sub>F<sub>G</sub></b>, <b>&#946;</b>) domains producing random, mixed, and segregated patterns
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="4.19">4.19</a></b></dt><dd>With the increase in <b>&#946;</b>, the domain of (<b>F<sub>B</sub>, F<sub>G</sub></b>) values producing mixed patterns in the left-top increases. This domain represents the case of a tolerant minority group which become more numerous as <b>&#946;</b> increases and thus contributes more to the emergence of mixed patterns. Correspondingly, with the increase in <b>&#946;</b> the domain of (<b>F<sub>B</sub>, F<sub>G</sub></b>) values producing mixed patterns in the right-button decreases as the  number of tolerant majority agents decreases. The (<b>F<sub>B</sub>, F<sub>G</sub></b>)  domain becomes symmetric across the <b>F<sub>B </sub></b>=<b> F<sub>G</sub></b> when <b>&#946; </b>reaches 0.5. The domain of the (<b>F<sub>B</sub>, F<sub>G</sub></b>) values producing the integrated patterns is largest for <b>&#946;</b> = 0.5 and shrinks with the decrease in <b>&#946;</b>; the mixed pattern area grows at its expense.
+
+<p></p></dd><dt><b><a name="4.20">4.20</a></b></dt><dd>All the persistent patterns produced in the (<b>&#946;, F<sub>B</sub>, F<sub>G</sub></b>)  domain are characterized by zero or very low value of the <b>C-</b>index (figure 20b). The non-zero values of <b>C</b> are obtained for values of parameters that lie on the boundary of the domain that guarantees segregation, namely, for the values of <b>F<sub>B</sub></b> and <b>F<sub>G</sub></b> that satisfy the condition <b>F<sub>B</sub></b> + <b>F<sub>G</sub></b> = 10/24, 11/24, 12/24. For these values of <b>F<sub>B</sub></b> and <b>F<sub>G</sub>,</b> the patterns fluctuate in time, and the amplitude of the fluctuations of the Moran's <b>I</b> and <b>C</b>-index does not depend on <b>&#946;.</b> For few (<b>F<sub>B</sub></b>, <b>F<sub>G</sub></b>) pairs on this boundary, the amplitude of the fluctuations reaches the level of <b>F<sub>G </sub>= </b>3/24, <b>F<sub>B</sub> = </b>7/24,  <b>&#946; </b>= 0.5 (Figure 10). We defer investigation of this phenomena to future work.
+
+</dd></dl><h3><img align="Bottom" src="./121_files/bullet.gif" width="23" height="23" alt="* ">Discussion
+</h3><dl compact="">
+<dt><b><a name="5.1">5.1</a></b></dt><dd>Our version of the Schelling model is based on two qualitative assumptions: first, agents are satisficers, i.e., they do not distinguish between locations where the number of friends is above their tolerance threshold; second, the relocation rules allow satisfied agents to migrate between vacancies of the same utility. The satisficing principle is consistent with Schelling's original formulation (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#schelling1978">Schelling 1978</a>), while the relocation rules entail liquid-like dynamics that prevent patterns from stalling in a state where some of the agents are dissatisfied because no satisfactory vacancies are available. 
+
+<p></p></dd><dt><b><a name="5.2">5.2</a></b></dt><dd>We demonstrated that satisficers, who can relocate between neighborhoods of the same utility, remain randomly distributed in space if their demands for having friends within neighborhoods is low, segregate if their demands are high and produce mixed patterns when their demands for friends within the neighborhood are intermediate. In the latter case, the population pattern depends on the investigated parameters: the fraction of minority <b>&#946;</b> and the level of tolerance <b>F<sub>B</sub></b> and <b>F<sub>G</sub></b> of the agents of each group.
+
+<p></p></dd><dt><b><a name="5.3">5.3</a></b></dt><dd>Can we relate these results to the real-world patterns as observed in Ramle and Yaffo (Figures 2-4)? Basically, yes: Arab householders are minorities in Yaffo and Ramle and empirical evidence suggests that members of Arab minorities living in mixed cities in Israel are somewhat indifferent to the presence of Jewish neighbors in their building or in neighboring buildings (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#benenson2002">Benenson et al. 2002</a>). We can also assume that Israeli Arabs and Jews are satisficers in regard to the ethnic structure of their residential neighborhoods and probably use additional criteria, besides ethnicity of neighbors, when searching for a dwelling. Our research demonstrates that if these tendencies characterize the entire population groups, the residential dynamics entail mixed patterns that are indeed observed over parts of Yaffo and Ramle.
+
+<p></p></dd><dt><b><a name="5.4">5.4</a></b></dt><dd>The model generated persistent patterns that are consistent with two of the three patterns presented in Figure 4: segregated patterns such as the one presented in Figure 4a, and mixed patterns such as the one in Figure 4b. However, Yaffo and Ramle patterns are more complex than those obtained in the model scenarios investigated in this paper: they both contain mixed parts side by side with segregated ones, as is schematically represented in Figure 4c. As we have shown above, the Schelling model even in extended, three-dimensional, parameter space does not produce such persistent patterns. Stated formally, within the model framework that we investigated in this paper, no matter what the fraction of minority or tolerance thresholds of the two groups, <i>segregated and mixed areas cannot permanently coexist</i>.
+
+<p></p></dd><dt><b><a name="5.5">5.5</a></b></dt><dd>The patterns in which segregated and mixed areas coexist emerge and dissolve periodically for values of <b>F</b> that lie on the boundary between the domains of parameters that entail persistently segregated and persistent mixed patterns. These fluctuating patterns should be further investigated in order to assess their robustness to the variation in the model rules, especially if we further generalize the model and assume that <i>the level of tolerance among Green and Blue agents can vary</i>. 
+
+<p></p></dd><dt><b><a name="5.6">5.6</a></b></dt><dd>A preliminary investigation demonstrates that more complex patterns than those obtained in this paper can indeed be obtained in this case, and these patterns contain one integrated and two segregated regions for a range of parameters that is wider than that revealed in this paper. We believe that such a generalization takes the model closer to the reality. Indeed, the assumption that  members of an ethnic group are identical in their attitude to  members of another ethnic group seems artificial no matter which groups are under discussion. However, the only result in this respect regarding Arabs and Jews is the ongoing empirical study by Omer et al. (<a href="http://jasss.soc.surrey.ac.uk/15/1/6.html#omer2011">2012</a>), who demonstrate that Jews and Arabs in Yaffo essentially vary in their residential tolerance to the members of the other group. 
+
+
+</dd></dl><hr><h3><img align="Bottom" src="./121_files/bullet.gif" width="23" height="23" alt="* "> Acknowledgements
+</h3><dl compact=""><dt></dt><dd>
+<!---Acknowledgements here ---->
+The authors would like to thank the editor and two anonymous reviewers for their helpful comments.
+
+
+</dd></dl><hr><h3><img align="Bottom" src="./121_files/bullet.gif" width="23" height="23" alt="* "> References</h3><dl compact=""><dt></dt><dd>
+ <!-- References here -->
+
+<a name="anselin1995">ANSELIN</a>, L. (1995) Local Indicators of Spatial Association - LISA. <i>Geographical Analysis</i> 27(2): 93-115.<p>
+<a name="benard2007">BENARD</a>, S. and Willer, R. (2007) A Wealth and Status-Based Model of Residential Segregation. <i>The Journal of Mathematical Sociology</i> 31(2): 149-174.</p><p>
+</p><p>
+<a name="benenson1998">BENENSON</a>, I. (1998) Multi-agent simulations of residential dynamics in the city. <i>Computers, Environment and Urban Systems</i> 22: 25-42.</p><p>
+</p><p>
+<a name="benenson1999">BENENSON</a>, I. (1999) Modeling population dynamics in the city: from a regional to a multi-agent approach. <i>Discrete Dynamics in Nature and Society</i> 3(2-3): 149-170.</p><p>
+</p><p>
+<a name="benenson2003">BENENSON</a>, I. and Omer, I. (2003) High-resolution Census data: a simple way to make them useful. <i>Data Science Journal</i> (Spatial Data Usability Special Section) 2(26): 117-127.</p><p>
+</p><p>
+<a name="benenson2002">BENENSON</a>, I., Omer, I., Hatna, E. (2002) Entity-based modeling of urban residential dynamics - the case of Yaffo, Tel-Aviv. <i>Environment and Planning B.</i> 29: 491-512.</p><p>
+</p><p>
+<a name="benenson2009">BENENSON</a>, I. and Hatna E. (2009) The Third State of the Schelling Model of Residential Dynamics. <i>arXiv:0910.2414v1 [physics.soc-ph]</i>.</p><p>
+</p><p>
+<a name="benenson2011">BENENSON</a>, I. and Hatna, E. (2011) Minority-Majority Relations in the Schelling Model of Residential Dynamics. <i>Geographical Analysis</i>. 43:287-305.</p><p>
+</p><p>
+<!-- BROWN, L. A. and Moore, E. A (1970) The intra-urban migration process: a perspective. <i>Geografiska Annaler</i> 52B: 1-13. --></p><p>
+</p><p>
+<a name="bruch2006">BRUCH</a>, E. E. and Mare, R. D. (2006) Neighborhood Choice and Neighborhood Change. <i>American Journal of Sociology</i> 112(3): 667-709.</p><p>
+</p><p>
+<a name="clark1991">CLARK</a>, W. A. V. (1991) Residential Preferences and Neighborhood Racial Segregation: A Test of the Schelling Segregation Model. <i>Demography</i> 28(1): 1-18.</p><p>
+</p><p>
+<a name="clark1993">CLARK</a>, W. A. V. (1993) Search and choice in urban housing markets. <i>Behavior and Environment: Psychological and Geographical Approaches</i>. T. G<i>ä</i>rling and R. G. Golledge. Amsterdam, Elsevier/North Holland: 298-316.</p><p>
+</p><p>
+<a name="clark2002">CLARK</a>, W. A. V. (2002) Ethnic preferences and ethnic perceptions in multi-ethnic settings. <i>Urban Geography</i> 23: 237-256.</p><p>
+</p><p>
+<a name="clark2006">CLARK</a>, W. A. V. (2006) Ethnic Preferences and Residential Segregation: A Commentary on Outcomes from Agent-Based Modeling. <i>The Journal of Mathematical Sociology</i> 30(3): 319 - 326.</p><p>
+</p><p>
+<a name="cornforth2005">CORNFORTH</a>, D., Green D. G. and Newth, D.. (2005) Ordered asynchronous processes in multi-agent systems. <i>Physica D</i> 204: 70-82.</p><p>
+</p><p>
+<a name="flache2001">FLACHE</a>, A. and Hegselmann, R. (2001) Do Irregular Grids make a Difference? Relaxing the Spatial Regularity Assumption in Cellular Models of Social Dynamics. <i>Journal of Artificial Societies and Social Simulation vol. 4, no. 4</i> 4(4) 6:  <a href="http://www.soc.surrey.ac.uk/JASSS/4/4/6.html">http://www.soc.surrey.ac.uk/JASSS/4/4/6.html</a>.</p><p>
+</p><p>
+<a name="fossett2006a">FOSSETT</a>, M. A. (2006a) Ethnic Preferences, Social Distance Dynamics, and Residential Segregation: Theoretical Explorations Using Simulation Analysis. <i>Mathematical Sociology</i> 30(3-4): 185 - 273.</p><p>
+</p><p>
+<a name="fossett2006b">FOSSETT</a>, M. A. (2006b) Including preference and social distance dynamics in multi-factor theories of segregation. <i>Mathematical Sociology</i> 30(3-4): 289-298.</p><p>
+</p><p>
+<a name="fossett2005">FOSSETT</a>, M. A. and Waren, W. (2005) Overlooked Implications of Ethnic Preferences for Residential Segregation in Agent-based Models. <i>Urban Studies</i> 42(11): 1893-1917.</p><p>
+
+<a name="getis1992">GETIS</a>, A., and Ord, J. (1992) The analysis of spatial association by use of distance statistics. <i>Geographical Analysis</i> 24:189-206.</p><p>
+
+<a name="griffith2010">GRIFFITH</a>, D. (2010) The Moran Coefficient for Non-Normal Data. <i>Journal of Statistical Planning and Inference</i> 140, 2980-2990.</p><p>
+
+<a name="koehler2002">KOEHLER</a>, G. and Skvoretz, J. (2002) Preferences and Residential Segregation: A Case Study of University Housing.  <a href="http://web1.cas.usf.edu/MAIN/include/0-1201-000/casestudy.pdf">http://web1.cas.usf.edu/MAIN/include/0-1201-000/casestudy.pdf</a>. Accessed September 13th, 2010.</p><p>
+</p><p>
+<a name="laurie2002">LAURIE</a>, A. J. and Jaggi, N. K. (2002) Physics and Sociology: Neighbourhood Racial Segregation. <i>Solid State Physics (India)</i> 45: 183-184.</p><p>
+
+<a name="laurie2003">LAURIE</a>, A. and Jaggi, J. N. K. (2003) Role of Vision in Neighbourhood Racial Segregation: A Variant of the Schelling Segregation Model. <i>Urban Studies </i>40(13): 2687-2704.  <a class="doi" href="http://dx.doi.org/10.1080/0042098032000146849" target="_blank">[doi:10.1080/0042098032000146849]</a></p><p>
+</p><p>
+<!-- MOGILNER, A., Edelstein-Keshet, L., Bent, L. and Spieos A. (2003) Mutual interactions, potentials, and individual distance in a social aggregation. <i>J. Math. Biol. </i>2003(47): 353-389. --></p><p>
+</p><p>
+<a name="lee2001">LEE</a>, S-I (2001) Developing a bivariate spatial association measure: an integration of Pearson's r and Moran's I. <i>Journal of Geographical Systems</i> 3: 369-385.</p><p>
+<a name="moore1970">MOORE</a>, E. F. (1970) Machine models of self-reproduction. In A. W. Burks, ed, <i>Essays on Cellular Automata</i>, pages 187-203. Univ of Illinois Press.</p><p>
+</p><p>
+<!-- MORALE, D. (2001) Modeling and simulating animal grouping. Individual-based models. <i>Future Generation Computer Systems</i> 17: 883-891. --></p><p>
+</p><p>
+<a name="omer1996">OMER</a>, I. (1996) <i>Ethnic</i> <i>Residential Segregation as a Structuration Process</i>. Unpublished Ph.D Thesis, Tel-Aviv University, Tel-Aviv.</p><p>
+</p><p>
+<!-- OMER, I. (2010) High-Resolution Geographic Data and Urban Modeling: The Case of Residential Segregation In B. Jiang, X. Yao<i>, Geospatial Analysis and Modelling of Urban Structure and Dynamics</i>, pp. 15 - 29, Springer. --></p><p>
+</p><p>
+<a name="omer2011">OMER </a>I. Romann M. and Goldblatt R. (2012) Tolerance and Geographic Scale in the Urban Area.  Submitted to the  <i>Journal of Urban Affairs</i>.</p><p>
+
+<a name="pollicott2001">POLLICOTT</a>, M. and Weiss, H. (2001) The Dynamics of Schelling-Type Segregation Models and a Nonlinear Graph Laplacian Variational Problem. <i>Advances in Applied Mathematics</i> 27: 17-40.  <a class="doi" href="http://dx.doi.org/10.1006/aama.2001.0722" target="_blank">[doi:10.1006/aama.2001.0722]</a></p><p>
+</p><p>
+<a name="portugali2000">PORTUGALI</a>, J. (2000) <i>Self-Organization and the City</i>. Berlin, Springer.</p><p>
+
+<a name="portugali1995">PORTUGALI</a>, J. and Benenson, I. (1995) Artificial planning experience by means of a heuristic sell-space model: simulating international migration in the urban process. <i>Environment and Planning B</i> 27: 1647-1665.  <a class="doi" href="http://dx.doi.org/10.1068/a271647" target="_blank">[doi:10.1068/a271647]</a></p><p>
+
+<a name="portugali1994">PORTUGALI</a>, J., Benenson I. and Omer, I. (1994) Socio-spatial residential dynamics: stability and instability within a self-organized city. <i>Geographical Analysis </i>26(4): 321-340.  <a class="doi" href="http://dx.doi.org/10.1111/j.1538-4632.1994.tb00329.x" target="_blank">[doi:10.1111/j.1538-4632.1994.tb00329.x]</a></p><p>
+
+<a name="portugali1997">PORTUGALI</a>, J., I. Benenson, Omer, I. (1997) Spatial cognitive dissonance and sociospatial emergence in a self-organizing city. <i>Environment and Planning B-Planning &amp; Design</i> 24(2): 263-285.  <a class="doi" href="http://dx.doi.org/10.1068/b240263" target="_blank">[doi:10.1068/b240263]</a></p><p>
+</p><p>
+<!-- RUOFF, G. and Schneider, G. (2006) Segregation in the classroom an empirical test of the schelling model. <i>Rationality and society</i> 18(1): 95-117. --></p><p>
+
+<a name="schelling1971">SCHELLING</a>, T. C. (1971). Dynamic models of segregation. <i>Journal of Mathematical Sociology</i> 1: 143-186.  <a class="doi" href="http://dx.doi.org/10.1080/0022250X.1971.9989794" target="_blank">[doi:10.1080/0022250X.1971.9989794]</a></p><p>
+<a name="schelling1974">SCHELLING</a>, T .C. (1974) On the ecology of micromotives. <i>The Corporate society</i>.  Marris, R. (ed). London: Macmillan:  19-64.
+</p><p>
+<a name="schelling1978">SCHELLING</a>, T. C. (1978) <i>Micromotives and Macrobehavior</i>. New York, WW Norton.</p><p>
+</p><p>
+<a name="simon1982">SIMON</a>, H. A. (1982) <i>Models of bounded rationality</i>. Cambridge, MIT Press.</p><p>
+</p><p>
+<!-- SPEARE, A. (1974) Residential satisfaction as an intervening variable in residential mobility. <i>Demography</i> 11: 173-188. --></p><p>
+
+<a name="vinkovic2006">VINKOVIC</a>, D. and KIRMAN, A. (2006) A physical analogue of the Schelling model. PNAS 103(51): 19261-19265.  <a class="doi" href="http://dx.doi.org/10.1073/pnas.0609371103" target="_blank">[doi:10.1073/pnas.0609371103
+]</a></p><p>
+</p><p>
+<!-- WEISBUCH, G., Deffuant G., Amblard, F. and Nadal, J. P. (2002) Meet, Discuss, and Segregate! <i>Complexity </i>7(3): 55-63. --></p><p>
+
+<a name="zhang2004">ZHANG</a>, J. (2004) Residential segregation in an all-integrationist world. <i>Journal of</i> <i>Economic Behavior &amp; Organization</i> 54: 533-550.  <a class="doi" href="http://dx.doi.org/10.1016/j.jebo.2003.03.005" target="_blank">[doi:10.1016/j.jebo.2003.03.005]</a></p><p>
+
+<a name="zhang2007">ZHANG</a>, T. and Linb, G. (2007) A decomposition of Moran's I for clustering detection. <i>Computational Statistics &amp; Data Analysis</i> 51: 6123-6137.  <a class="doi" href="http://dx.doi.org/10.1016/j.csda.2006.12.032" target="_blank">[doi:10.1016/j.csda.2006.12.032]</a></p><p>
+
+</p></dd></dl>
+    </div> <!-- article -->
+</div> <!-- content -->
+<div class="footer" id="footer">
+	<img src="./121_files/line-rain.gif" width="100%" height="4" alt="----">
+	<p>
+	| <a href="http://jasss.soc.surrey.ac.uk/JASSS.html">JASSS Home</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/current.html">Current issue</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/admin/info.html">Information</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/admin/search.html">Search</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/admin/notices.html">Notices</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/admin/archive.html">Back issues</a>
+	| <a href="http://jasss.soc.surrey.ac.uk/admin/comments.html">Comments</a>
+	</p>
+	<p style="text-align: left;">
+	© <a href="http://jasss.soc.surrey.ac.uk/admin/copyright.html">Copyright JASSS</a>
+	</p>
+</div>
+
+
+
+</body></html>
