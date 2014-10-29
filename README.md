@@ -21,6 +21,25 @@ Is the total population overall.
 
 It was introducted in the context of occupational segregation by gender
 
+- Waldorf (1992) mentions Jakubs (1891) and Morgan(1983)'s adaptation of the dissiminarity indiex to include a distance function
+
+This takes on the form
+> DBMI = min(D_obs) / min(D_ext)
+
+Where 
+> min(D_obs) 
+
+is the minimum total relocation distance needed to transform the observed distirbution into the uniform distribution
+
+And 
+> min(D_ext)
+
+Is the minimun total relocation distance necessary to transform the extreme of a completely segregated pattern into a uniform distribution
+
+
+
+- 
+
 
 # This is a header and my first line
 - this is a bullet point
